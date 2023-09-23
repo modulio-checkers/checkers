@@ -14,13 +14,16 @@ html, body{
     grid-column: 2/3;
     border: 2px solid black;
     display: grid;
-    grid-template-columns: repeat(8, auto);
-    grid-template-rows: repeat(8, auto);
+    grid-template-columns: repeat(8, 81.25px);
+    grid-template-rows: repeat(8, 81.25px);
 
 }
 
 .square{
     border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .black{
@@ -44,11 +47,10 @@ html, body{
     margin: auto 10%
 }
 
-/* .checker{
-    position: absolute;
-    z-index: 1;
-    background-color: white;
+.checker.active{
+
     height: 70px;
     width: 70px;
-    border-radius: 100%;
-} */
+    border-radius: 100px;
+    background-color: red;
+}
