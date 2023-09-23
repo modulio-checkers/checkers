@@ -5,218 +5,213 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkers</title>
     <link rel="stylesheet" href="/static/style.css">
-    <script src="main.js" defer></script>
+    <script src="/static/main.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <div class="player1-info">
-            <p class="player1">Player1</p>
-            <p class="timer1">00:00</p>
+<div class="container">
+    <div class="player1-info">
+        <p class="player1">{{ board.player1 }}</p>
+        <p class="timer1">00:00</p>
+    </div>
+    <div class="board">
+        <div class="square sqaure1 black">
+            <div class="checker active"></div>
         </div>
-        <div class="board">
-            <div class="square sqaure1 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure2 white">
-                <div class="checker "></div>
-            </div>
-            <div class="square sqaure3 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure4 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure5 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure6 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure7 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure8 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure9 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure10 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure11 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure12 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure13 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure14 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure15 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure16 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure17 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure18 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure19 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure20 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure21 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure22 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure23 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure24 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure25 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure26 black">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure27 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure28 black">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure29 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure30 black">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure31 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure32 black">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure33 black">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure34 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure35 black">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure36 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure37 black">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure38 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure39 black">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure40 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure41 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure42 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure43 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure44 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure45 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure46 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure47 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure48 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure49 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure50 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure51 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure52 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure53 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure54 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure55 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure56 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure57 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure58 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure59 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure60 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure61 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure62 black">
-                <div class="checker active"></div>
-            </div>
-            <div class="square sqaure63 white">
-                <div class="checker"></div>
-            </div>
-            <div class="square sqaure64 black">
-                <div class="checker active"></div>
-            </div>
+        <div class="square sqaure2 white">
+            <div class="checker "></div>
         </div>
-        <div class="player2-info">
-            <p class="player2">Player2</p>
-            <p class="timer2">00:00</p>
+        <div class="square sqaure3 black">
+            <div class="checker active"></div>
         </div>
-        
+        <div class="square sqaure4 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure5 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure6 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure7 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure8 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure9 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure10 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure11 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure12 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure13 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure14 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure15 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure16 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure17 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure18 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure19 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure20 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure21 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure22 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure23 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure24 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure25 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure26 black">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure27 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure28 black">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure29 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure30 black">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure31 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure32 black">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure33 black">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure34 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure35 black">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure36 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure37 black">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure38 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure39 black">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure40 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure41 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure42 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure43 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure44 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure45 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure46 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure47 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure48 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure49 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure50 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure51 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure52 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure53 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure54 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure55 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure56 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure57 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure58 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure59 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure60 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure61 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure62 black">
+            <div class="checker active"></div>
+        </div>
+        <div class="square sqaure63 white">
+            <div class="checker"></div>
+        </div>
+        <div class="square sqaure64 black">
+            <div class="checker active"></div>
+        </div>
+    </div>
+    <div class="player2-info">
+        <p class="player2">{{ board.player2 }}</p>
+        <p class="timer2">00:00</p>
     </div>
 
-    <title></title>
-</head>
-<body>
-
+</div>
 </body>
 </html>
