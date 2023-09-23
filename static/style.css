@@ -1,0 +1,56 @@
+html, body{
+    height: 100%;
+}
+
+.container{
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 650px auto;
+    grid-template-rows: auto auto 650px auto auto;
+}
+
+.board{
+    grid-row: 3/4;
+    grid-column: 2/3;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: repeat(8, 81.25px);
+    grid-template-rows: repeat(8, 81.25px);
+
+}
+
+.square{
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.black{
+    background-color: rgb(37, 37, 37);
+}
+
+.player1-info{
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+
+.player2-info{
+    grid-row: 4/5;
+    grid-column: 2/3;
+}
+
+.player1-info, .player2-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto 10%
+}
+
+.checker.active{
+
+    height: 70px;
+    width: 70px;
+    border-radius: 100px;
+    background-color: red;
+}
