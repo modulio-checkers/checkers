@@ -43,3 +43,12 @@ html, body{
     align-items: center;
     margin: auto 10%
 }
+
+/* .checker{
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+} */
