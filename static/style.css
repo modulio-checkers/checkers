@@ -54,3 +54,16 @@ html, body{
     border-radius: 100px;
     background-color: red;
 }
+
+.player{
+    position: absolute;
+    /* transform: translate(-50%, -50%); */
+    height: 70px;
+    width: 70px;
+    border-radius: 100px;
+    background-color: white;
+}
+
+.player.active{
+    
+}
