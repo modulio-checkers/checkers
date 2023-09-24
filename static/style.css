@@ -64,10 +64,12 @@ html, body{
     background-color: white;
     top: 0px;
     left: 0px;
+    opacity: 0%;
 }
 
 .player.pActive{
     background-color: red;
     /* cursor: none !important; */
+    opacity: 100%;
 
 }
