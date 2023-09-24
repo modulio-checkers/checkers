@@ -23,10 +23,11 @@ document.addEventListener('mousedown', (event) => {
 // document.addEventListener('mousedown', ()=>{
 //     console.log(isDragging);
 // })
-const p1Checker = document.querySelector("#p1Checker");
 
 document.addEventListener("mousemove", e=>{
     if(isDragging){
+        const p1Checker = document.querySelector("#p1Checker");
+
     p1Checker.style.top = `${e.clientY-35}px`;
     p1Checker.style.left = `${e.clientX-35}px`;
     // document.addEventListener("mousedown", ()=>{
@@ -38,12 +39,14 @@ document.addEventListener("mousemove", e=>{
  
 
 document.addEventListener('mouseup', e=>{
-    document.querySelector("#p1Checker").innerHTML = ``;
+    isDragging = false;
+    document.querySelector("#p1Checker").remove();
     // console.log(checkerMove.classList);
     // console.log("w");
-    // let elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
+    let elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
     // console.log(elementUnderMouse.className.includes("checker "));
-    console.log(elementUnderMouse);
+    console.log(elementUnderMouse.children[0]);
+    elementUnderMouse.children[0].classList.add("active");
     // while(!elementUnderMouse.tagName !== 'HTML'){
     //     elementUnderMouse.style.pointerEvent = "none";
     //     elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
