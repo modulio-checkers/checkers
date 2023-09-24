@@ -62,8 +62,12 @@ html, body{
     width: 70px;
     border-radius: 100px;
     background-color: white;
+    top: 0px;
+    left: 0px;
 }
 
-.player.active{
-    
+.player.pActive{
+    background-color: red;
+    /* cursor: none !important; */
+
 }
