@@ -7,44 +7,44 @@ let currentChecker;
 document.addEventListener('mousedown', (e) => {
     isDragging = false;
     const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
-        currentChecker = elementUnderMouse.dataset.checker;
-        if(elementUnderMouse.className.includes("active")){
-            elementUnderMouse.classList.remove("active");
+    currentChecker = elementUnderMouse.dataset.checker;
+    if (elementUnderMouse.className.includes("active")) {
+        elementUnderMouse.classList.remove("active");
 
-            isDragging = true;
-            document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
-            const p1Checker = document.querySelector("#p1Checker");
-            document.querySelector("#p1Checker").style.background = "red";
+        isDragging = true;
+        document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
+        const p1Checker = document.querySelector("#p1Checker");
+        document.querySelector("#p1Checker").style.background = "red";
 
-            p1Checker.style.top = `${e.clientY-35}px`;
-            p1Checker.style.left = `${e.clientX-35}px`;
-        }
-        // const pActive = document.querySelector(".pActive");
-        // checkerMove.classList.add("pActive");
-        // if(currentChecker){
-            
-        // }
-        // console.log(isDragging);
+        p1Checker.style.top = `${e.clientY - 35}px`;
+        p1Checker.style.left = `${e.clientX - 35}px`;
+    }
+    // const pActive = document.querySelector(".pActive");
+    // checkerMove.classList.add("pActive");
+    // if(currentChecker){
+
+    // }
+    // console.log(isDragging);
 });
 // document.addEventListener('mousedown', ()=>{
 //     console.log(isDragging);
 // })
 
-document.addEventListener("mousemove", e=>{
-    if(isDragging){
+document.addEventListener("mousemove", e => {
+    if (isDragging) {
         const p1Checker = document.querySelector("#p1Checker");
         document.querySelector("#p1Checker").style.background = "red";
-    p1Checker.style.top = `${e.clientY-35}px`;
-    p1Checker.style.left = `${e.clientX-35}px`;
-    // document.addEventListener("mousedown", ()=>{
-    // checkerMove.classList.remove("pActive");
-    // document.elementFromPoint(event.clientX, event.clientY).classList.remove("active");
-    // })
+        p1Checker.style.top = `${e.clientY - 35}px`;
+        p1Checker.style.left = `${e.clientX - 35}px`;
+        // document.addEventListener("mousedown", ()=>{
+        // checkerMove.classList.remove("pActive");
+        // document.elementFromPoint(event.clientX, event.clientY).classList.remove("active");
+        // })
     }
 });
- 
 
-document.addEventListener('mouseup', e=>{
+
+document.addEventListener('mouseup', e => {
     isDragging = false;
     document.querySelector("#p1Checker").remove();
     // console.log(checkerMove.classList);
@@ -59,7 +59,7 @@ document.addEventListener('mouseup', e=>{
     // }
     // elementUnderMouse.forEach(element => {
     //     console.log(elementUnderMouse);
-        
+
     // });
     // const currentElement = `${elementUnderMouse.className.split(" ", 1)}>.checker`;
     // console.log(currentElement);
