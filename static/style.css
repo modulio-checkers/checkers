@@ -55,9 +55,8 @@ html, body{
     background-color: red;
 }
 
-.player{
+/* .player{
     position: absolute;
-    /* transform: translate(-50%, -50%); */
     height: 70px;
     width: 70px;
     border-radius: 100px;
@@ -69,7 +68,15 @@ html, body{
 
 .player.pActive{
     background-color: red;
-    /* cursor: none !important; */
+    cursor: none !important;
     opacity: 100%;
 
+} */
+
+#p1Checker{
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    border-radius: 100px;
+    background-color: red;
 }
