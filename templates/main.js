@@ -4,17 +4,23 @@ let isDragging = false;
 let currentChecker;
 
 
-document.addEventListener('mousedown', (event) => {
+document.addEventListener('mousedown', (e) => {
     isDragging = false;
-    const elementUnderMouse = document.elementFromPoint(event.clientX, event.clientY);
+    const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
         currentChecker = elementUnderMouse.dataset.checker;
         if(elementUnderMouse.className.includes("active")){
+            elementUnderMouse.classList.remove("active");
+
             isDragging = true;
             document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
+            const p1Checker = document.querySelector("#p1Checker");
+            document.querySelector("#p1Checker").style.background = "red";
+
+            p1Checker.style.top = `${e.clientY-35}px`;
+            p1Checker.style.left = `${e.clientX-35}px`;
         }
         // const pActive = document.querySelector(".pActive");
         // checkerMove.classList.add("pActive");
-        elementUnderMouse.classList.remove("active");
         // if(currentChecker){
             
         // }
@@ -27,7 +33,7 @@ document.addEventListener('mousedown', (event) => {
 document.addEventListener("mousemove", e=>{
     if(isDragging){
         const p1Checker = document.querySelector("#p1Checker");
-
+        document.querySelector("#p1Checker").style.background = "red";
     p1Checker.style.top = `${e.clientY-35}px`;
     p1Checker.style.left = `${e.clientX-35}px`;
     // document.addEventListener("mousedown", ()=>{
