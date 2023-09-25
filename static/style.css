@@ -47,11 +47,12 @@ html, body {
     margin: auto 10%
 }
 
-.checker.active{
+.active{
     height: 70px;
     width: 70px;
     border-radius: 100px;
     background-color: red; /*comment*/
+    border: 3px solid black;
 }
 
 /* .one{
