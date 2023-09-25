@@ -1,13 +1,16 @@
-// const checkerMove = document.querySelector(".player");
 let isDragging = false;
-// const pActive = document.querySelector(".pActive");
-let currentChecker;
+let currentChecker = '';
+let playerTurn = 1;
+const invalid = ["white", "container", "active"];
+const valid = "black";
 
+console.log(invalid, valid);
 
 document.addEventListener('mousedown', (e) => {
     isDragging = false;
     const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
-    currentChecker = elementUnderMouse.dataset.checker;
+    currentChecker = elementUnderMouse;
+    console.log(currentChecker);
     if (elementUnderMouse.className.includes("active")) {
         elementUnderMouse.classList.remove("active");
 
@@ -15,31 +18,21 @@ document.addEventListener('mousedown', (e) => {
         document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
         const p1Checker = document.querySelector("#p1Checker");
         document.querySelector("#p1Checker").style.background = "red";
+        document.querySelector("#p1Checker").style.border = "3px solid black";
+
 
         p1Checker.style.top = `${e.clientY - 35}px`;
         p1Checker.style.left = `${e.clientX - 35}px`;
     }
-    // const pActive = document.querySelector(".pActive");
-    // checkerMove.classList.add("pActive");
-    // if(currentChecker){
-
-    // }
-    // console.log(isDragging);
 });
-// document.addEventListener('mousedown', ()=>{
-//     console.log(isDragging);
-// })
 
 document.addEventListener("mousemove", e => {
     if (isDragging) {
         const p1Checker = document.querySelector("#p1Checker");
         document.querySelector("#p1Checker").style.background = "red";
+        document.querySelector("#p1Checker").style.border = "3px solid black";
         p1Checker.style.top = `${e.clientY - 35}px`;
         p1Checker.style.left = `${e.clientX - 35}px`;
-        // document.addEventListener("mousedown", ()=>{
-        // checkerMove.classList.remove("pActive");
-        // document.elementFromPoint(event.clientX, event.clientY).classList.remove("active");
-        // })
     }
 });
 
@@ -47,35 +40,22 @@ document.addEventListener("mousemove", e => {
 document.addEventListener('mouseup', e => {
     isDragging = false;
     document.querySelector("#p1Checker").remove();
-    // console.log(checkerMove.classList);
-    // console.log("w");
-    let elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
-    // console.log(elementUnderMouse.className.includes("checker "));
-    console.log(elementUnderMouse.children[0]);
-    elementUnderMouse.children[0].classList.add("active");
-    // while(!elementUnderMouse.tagName !== 'HTML'){
-    //     elementUnderMouse.style.pointerEvent = "none";
-    //     elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
-    // }
-    // elementUnderMouse.forEach(element => {
-    //     console.log(elementUnderMouse);
+    let elementUnderMouse = '';
+    elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
+    let includes;
+    if(elementUnderMouse!==null){
+        includes = elementUnderMouse.classList.value;
+    }
+    if(elementUnderMouse === null){
+        document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
+    }
+    else if(includes.includes(invalid[0]) || includes.includes(invalid[1])
+     || includes.includes(invalid[2])){
+        document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
+    }
+    else if(elementUnderMouse.classList.value.includes(valid)){
+        elementUnderMouse.children[0].classList.add("active");
+    }
 
-    // });
-    // const currentElement = `${elementUnderMouse.className.split(" ", 1)}>.checker`;
-    // console.log(currentElement);
-    // document.querySelector(`${elementUnderMouse.className}>.checker`).classList.add("active");
 })
 
-// document.addEventListener('mousedown', (event)=>{
-//     if(checkerMove.classList.includes("pActive")){
-//         checkerMove.classList.remove("pActive");
-//         document.elementFromPoint(event.clientX, event.clientY).classList.remove("active");
-//     }
-// });
-// console.log("remove");
-// checkerMove.classList.remove("pActive");
-
-
-// document.addEventListener('mouseup', (event) => {
-//     checkerMove.classList.remove("pActive");
-// });

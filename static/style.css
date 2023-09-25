@@ -1,9 +1,12 @@
 html, body {
     height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
 .container {
     height: 100%;
+    width: 100%;
     display: grid;
     grid-template-columns: auto 650px auto;
     grid-template-rows: auto auto 650px auto auto;
@@ -47,13 +50,22 @@ html, body {
     margin: auto 10%
 }
 
-.checker.active {
-
+.active{
     height: 70px;
     width: 70px;
     border-radius: 100px;
+    background-color: red; /*comment*/
+    border: 3px solid black;
+}
+
+/* .one{
     background-color: red;
 }
+
+
+.two{
+    background-color: blue;
+} */
 
 /* .player{
     position: absolute;
