@@ -1,9 +1,12 @@
 html, body {
     height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
 .container {
     height: 100%;
+    width: 100%;
     display: grid;
     grid-template-columns: auto 650px auto;
     grid-template-rows: auto auto 650px auto auto;
