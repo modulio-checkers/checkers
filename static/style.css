@@ -47,13 +47,21 @@ html, body {
     margin: auto 10%
 }
 
-.checker.active {
-
+.checker.active{
     height: 70px;
     width: 70px;
     border-radius: 100px;
+    background-color: red; /*comment*/
+}
+
+/* .one{
     background-color: red;
 }
+
+
+.two{
+    background-color: blue;
+} */
 
 /* .player{
     position: absolute;
