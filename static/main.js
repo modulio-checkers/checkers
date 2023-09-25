@@ -41,23 +41,11 @@ document.addEventListener('mouseup', e => {
     isDragging = false;
     document.querySelector("#p1Checker").remove();
     let elementUnderMouse = '';
-    // if(e.clientX <= document.querySelector('html').offsetWidth && e.clientX >= 0 && 
-    // e.clientY <= document.querySelector('html').offsetHeight && e.clientY >= 0){
-    //     elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);}
-    // else{
-    //     elementUnderMouse = 0;
-    // }
     elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
-
-    // e.clientX > document.querySelector('html').offsetWidth || e.clientX < 0 ||
-    //  e.clientY > document.querySelector('html').offsetHeight || e.clientY < 0
-    // console.log(elementUnderMouse===null);
     let includes;
     if(elementUnderMouse!==null){
         includes = elementUnderMouse.classList.value;
     }
-    // console.log(e.clientX > document.querySelector('html').offsetWidth || e.clientX < 0);
-    // console.log(typeof elementUnderMouse === null);
     if(elementUnderMouse === null){
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
     }
