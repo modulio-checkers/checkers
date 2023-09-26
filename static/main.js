@@ -7,7 +7,7 @@ const valid = ["black"];
 
 console.log(invalid, valid);
 
-document.addEventListener('mousedown', (e) => {
+document.addEventListener('mousedown', e => {
     isDragging = false;
     const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
     currentChecker = elementUnderMouse;
@@ -17,8 +17,8 @@ document.addEventListener('mousedown', (e) => {
         isDragging = true;
         document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
         const p1Checker = document.querySelector("#p1Checker");
-        document.querySelector("#p1Checker").style.background = "red";
-        document.querySelector("#p1Checker").style.border = "3px solid black";
+        document.querySelector("#p1Checker").style.background = "red"; //paredaduok kad butu galima istrint
+        document.querySelector("#p1Checker").style.border = "3px solid black"; //paredaduok kad butu galima istrint
         p1Checker.style.top = `${e.clientY - 35}px`;
         p1Checker.style.left = `${e.clientX - 35}px`;
     }
@@ -27,13 +27,12 @@ document.addEventListener('mousedown', (e) => {
 document.addEventListener("mousemove", e => {
     if (isDragging) {
         const p1Checker = document.querySelector("#p1Checker");
-        document.querySelector("#p1Checker").style.background = "red";
-        document.querySelector("#p1Checker").style.border = "3px solid black";
+        document.querySelector("#p1Checker").style.background = "red"; //paredaduok kad butu galima istrint
+        document.querySelector("#p1Checker").style.border = "3px solid black"; //paredaduok kad butu galima istrint
         p1Checker.style.top = `${e.clientY - 35}px`;
         p1Checker.style.left = `${e.clientX - 35}px`;
     }
 });
-
 
 document.addEventListener('mouseup', e => {
     isDragging = false;
@@ -44,13 +43,20 @@ document.addEventListener('mouseup', e => {
     if(elementUnderMouse !== null){
         includes = elementUnderMouse.classList.value;
     }
-    console.log(typeof includes)
-    if(elementUnderMouse === null || invalid.some(element => includes.includes(element))){
+    console.log(typeof includes);
+    if(elementUnderMouse === null){
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
     }
-    else if(elementUnderMouse.classList.value.includes(valid)){
+    else if(elementUnderMouse.classList.value.includes(valid[0]) && !elementUnderMouse.children[0].classList.value.includes("active")){
         elementUnderMouse.children[0].classList.add("active");
     }
-
+    else{
+        document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
+    }
+    //tarkim geras naujas kodas ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    // else if(elementUnderMouse === null || invalid.some(element => includes.includes(element))){
+    //     document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
+    // }
+    //senas geras kodas ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 })
 
