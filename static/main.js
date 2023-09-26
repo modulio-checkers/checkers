@@ -47,7 +47,7 @@ document.addEventListener('mouseup', e => {
     if(elementUnderMouse === null){
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
     }
-    else if(elementUnderMouse.classList.value.includes(valid[0]) && !elementUnderMouse.children[0].classList.value.includes("active")){
+    else if(includes.includes(valid[0]) && !elementUnderMouse.children[0].classList.value.includes("active")){
         elementUnderMouse.children[0].classList.add("active");
     }
     else{
