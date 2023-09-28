@@ -15,17 +15,22 @@ document.addEventListener('mousedown', e => {
     const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
     currentChecker = elementUnderMouse;
     if (elementUnderMouse.className.includes("active")) {
-        const checkerNum = Number(currentChecker.dataset.checker);
         available.length = 0;
-        available = [
-        document.querySelector(".square" + (checkerNum - 9)),
-        document.querySelector(".square" + (checkerNum - 7)), 
-        document.querySelector(".square" + (checkerNum + 7)),
-        document.querySelector(".square" + (checkerNum + 9))];
-        console.log(available);
-        for(let x in available){
-            available[x].classList.add("orange");
+        const checkerNum = Number(currentChecker.dataset.checker);
+        let temporaryAvailable = [];
+        //patikrint pozicija ar yra kampinis ar krastinis
+        temporaryAvailable.length = 0;
+        temporaryAvailable = [
+        ".square" + (checkerNum - 9),
+        ".square" + (checkerNum - 7), 
+        ".square" + (checkerNum + 7),
+        ".square" + (checkerNum + 9)];
+        console.log(temporaryAvailable);
+        for(let x in temporaryAvailable){
+            available.push(document.querySelector(temporaryAvailable[x]));
+            // available[x].classList.add("orange");
         }
+        console.log(available);
         elementUnderMouse.classList.remove("active");
         isDragging = true;
         document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
