@@ -6,9 +6,29 @@ const invalid = ["white", "container", "active", "player1-info", "player2-info",
 const valid = ["black"];
 let available = [];
 
-// console.log(document.querySelector(".square"));
-
-// console.log(invalid, valid);
+function availableNumbers(checkerNum){
+    if(checkerNum == 1){
+        available = [document.querySelector(".square10")];
+    }
+    else if(checkerNum == 64){
+        available = [document.querySelector(".square55")];
+    }
+    else if(checkerNum == 3 || checkerNum == 5 || checkerNum == 7){
+        available = [document.querySelector(".square" + (checkerNum + 7)),
+        document.querySelector(".square" + (checkerNum + 9))];
+    }
+    else if(checkerNum == 58 || checkerNum == 60 || checkerNum == 62){
+        available = [document.querySelector(".square" + (checkerNum - 7)),
+        document.querySelector(".square" + (checkerNum - 9))];
+    }
+    else{
+        available = [
+        document.querySelector(".square" + (checkerNum - 9)),
+        document.querySelector(".square" + (checkerNum - 7)), 
+        document.querySelector(".square" + (checkerNum + 7)),
+        document.querySelector(".square" + (checkerNum + 9))];
+    }
+}
 
 document.addEventListener('mousedown', e => {
     isDragging = false;
@@ -17,20 +37,15 @@ document.addEventListener('mousedown', e => {
     if (elementUnderMouse.className.includes("active")) {
         available.length = 0;
         const checkerNum = Number(currentChecker.dataset.checker);
-        let temporaryAvailable = [];
-        //patikrint pozicija ar yra kampinis ar krastinis
-        temporaryAvailable.length = 0;
-        temporaryAvailable = [
-        ".square" + (checkerNum - 9),
-        ".square" + (checkerNum - 7), 
-        ".square" + (checkerNum + 7),
-        ".square" + (checkerNum + 9)];
-        console.log(temporaryAvailable);
-        for(let x in temporaryAvailable){
-            available.push(document.querySelector(temporaryAvailable[x]));
-            // available[x].classList.add("orange");
-        }
+        // console.log(document.querySelector(".square" + (checkerNum + 7)));
+        console.log(checkerNum);
+        availableNumbers(checkerNum);
         console.log(available);
+        //apkeist langeliu numerius^^^^^^^^^^^^
+        // for(let x in available){
+            // available[x].classList.add("orange");
+            // }
+        //pavercia oranziniais ^^^^^^^^^^^^^^^^
         elementUnderMouse.classList.remove("active");
         isDragging = true;
         document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
@@ -55,10 +70,6 @@ document.addEventListener("mousemove", e => {
 document.addEventListener('mouseup', e => {
     isDragging = false;
     document.querySelector("#p1Checker").remove();
-    // for(let x in available){
-    //     console.log(available[x]);
-    //     available[x].classList.remove("orange");
-    // }
     let elementUnderMouse = '';
     elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
     let includes;
