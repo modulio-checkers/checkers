@@ -4,15 +4,28 @@ let currentChecker = '';
 let playerTurn = 1;
 const invalid = ["white", "container", "active", "player1-info", "player2-info", "timer1", "player1", "timer2", "player2"];
 const valid = ["black"];
+let available = [];
 
-console.log(invalid, valid);
+// console.log(document.querySelector(".square"));
+
+// console.log(invalid, valid);
 
 document.addEventListener('mousedown', e => {
     isDragging = false;
     const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
     currentChecker = elementUnderMouse;
-    console.log(currentChecker);
     if (elementUnderMouse.className.includes("active")) {
+        const checkerNum = Number(currentChecker.dataset.checker);
+        available.length = 0;
+        available = [
+        document.querySelector(".square" + (checkerNum - 9)),
+        document.querySelector(".square" + (checkerNum - 7)), 
+        document.querySelector(".square" + (checkerNum + 7)),
+        document.querySelector(".square" + (checkerNum + 9))];
+        console.log(available);
+        for(let x in available){
+            available[x].classList.add("orange");
+        }
         elementUnderMouse.classList.remove("active");
         isDragging = true;
         document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
@@ -37,13 +50,17 @@ document.addEventListener("mousemove", e => {
 document.addEventListener('mouseup', e => {
     isDragging = false;
     document.querySelector("#p1Checker").remove();
+    // for(let x in available){
+    //     console.log(available[x]);
+    //     available[x].classList.remove("orange");
+    // }
     let elementUnderMouse = '';
     elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
     let includes;
     if(elementUnderMouse !== null){
         includes = elementUnderMouse.classList.value;
     }
-    console.log(typeof includes);
+    // console.log(typeof includes);
     if(elementUnderMouse === null){
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
     }
