@@ -3,7 +3,7 @@ let isDragging = false;
 let currentChecker = '';
 let playerTurn = 1;
 const invalid = ["white", "container", "active", "player1-info", "player2-info", "timer1", "player1", "timer2", "player2"];
-const valid = ["black"];
+const valid = ["black", "orange"];
 let available = [];
 
 function availableNumbers(checkerNum){
@@ -21,6 +21,14 @@ function availableNumbers(checkerNum){
         available = [document.querySelector(".square" + (checkerNum - 7)),
         document.querySelector(".square" + (checkerNum - 9))];
     }
+    else if(checkerNum == 16 || checkerNum == 32 || checkerNum == 48){
+        available = [document.querySelector(".square" + (checkerNum - 9)),
+        document.querySelector(".square" + (checkerNum + 7))]
+    }
+    else if(checkerNum == 17 || checkerNum == 33 || checkerNum == 49){
+        available = [document.querySelector(".square" + (checkerNum - 7)),
+        document.querySelector(".square" + (checkerNum + 9))]
+    }
     else{
         available = [
         document.querySelector(".square" + (checkerNum - 9)),
@@ -37,15 +45,10 @@ document.addEventListener('mousedown', e => {
     if (elementUnderMouse.className.includes("active")) {
         available.length = 0;
         const checkerNum = Number(currentChecker.dataset.checker);
-        // console.log(document.querySelector(".square" + (checkerNum + 7)));
-        console.log(checkerNum);
         availableNumbers(checkerNum);
-        console.log(available);
-        //apkeist langeliu numerius^^^^^^^^^^^^
-        // for(let x in available){
-            // available[x].classList.add("orange");
-            // }
-        //pavercia oranziniais ^^^^^^^^^^^^^^^^
+        for(let x in available){
+            available[x].classList.add("orange");
+        }
         elementUnderMouse.classList.remove("active");
         isDragging = true;
         document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
@@ -68,6 +71,7 @@ document.addEventListener("mousemove", e => {
 });
 
 document.addEventListener('mouseup', e => {
+    console.log(available);
     isDragging = false;
     document.querySelector("#p1Checker").remove();
     let elementUnderMouse = '';
@@ -76,20 +80,32 @@ document.addEventListener('mouseup', e => {
     if(elementUnderMouse !== null){
         includes = elementUnderMouse.classList.value;
     }
-    // console.log(typeof includes);
     if(elementUnderMouse === null){
-        document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
+        document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); 
     }
-    else if(includes.includes(valid[0]) && !elementUnderMouse.children[0].classList.value.includes("active")){
+    else if(includes.includes(valid[0]) && includes.includes(valid[1]) && !elementUnderMouse.children[0].classList.value.includes("active")){
         elementUnderMouse.children[0].classList.add("active");
     }
     else{
-        document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
+        document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); 
     }
-    //tarkim geras naujas kodas ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        //tarkim geras naujas kodas ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    console.log(available[0].classList[available.length-1]);
+    for(let x in available){
+        const removing = document.querySelectorAll(".orange");
+        for(let h in removing){
+            removing[h].classList.remove("orange");
+        }
+    }
+    console.log(available);
+
     // else if(elementUnderMouse === null || invalid.some(element => includes.includes(element))){
     //     document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
     // }
     //senas geras kodas ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    // document.querySelector(`.${available[x].classList[available.length-1]}`).classList.remove("orange");
+    //kinda veikiantis kodas^^^^
+
 })
 
