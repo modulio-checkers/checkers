@@ -6,6 +6,12 @@ const valid = ["black", "orange"];
 let available = [];
 let thisPlayer;
 
+function serverReady(){
+    console.log("server ready");
+}
+
+
+
 function availableNumbers(checkerNum){
     if(checkerNum == 1){
         available = [document.querySelector(".square10")];
