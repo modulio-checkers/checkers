@@ -24,6 +24,19 @@ function register_update_board(callback) {
     board_update_registered = true;
 }
 
+function register_update_metadata(callback) {
+    /*
+    Update the metadata of the game.
+    Will be called when a second player joins, but is not ready yet.
+    Callback will be called with no arguments.
+     */
+    socket.on("update_metadata", (data) => {
+        player1 = data.player1;
+        player2 = data.player2;
+    });
+    callback();
+}
+
 function ready() {
     /*
     Tell the server that this client is ready to start the game.
@@ -45,14 +58,6 @@ function move(from, to) {
      */
     socket.emit("move", {gameId: gameId, from: from, to: to});
 }
-
-socket.on("update_metadata", (data) => {
-    /*
-    Update the metadata of the game. Will be called when a second player joins, but is not ready yet.
-     */
-    player1 = data.player1;
-    player2 = data.player2;
-})
 
 
 
