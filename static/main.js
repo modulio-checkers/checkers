@@ -38,31 +38,10 @@ function availableNumbers(checkerNum){
         document.querySelector(".square" + (checkerNum + 9))];
     }
 }
-
-function oneMouseDown(){
-    
-}
-
-function twoMouseDown(){
-
-}
-
-function oneMouseMove(){
-
-}
-
-function twoMouseMove(){
-}
 //pakeist, kad veiktu su grid system
 
-document.addEventListener('mousedown', e => {
-    isDragging = false;
-    const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
-    currentChecker = elementUnderMouse;
-    if (elementUnderMouse.className.includes("active")) {
-        available.length = 0;
-        if(playerTurn % 2 == 0 && elementUnderMouse.className.includes("one")){
-        thisPlayer = "one";
+function oneMouseDown(elementUnderMouse, e){
+    thisPlayer = "one";
         console.log(thisPlayer);
         const checkerNum = Number(currentChecker.dataset.checker);
         availableNumbers(checkerNum);
@@ -77,9 +56,10 @@ document.addEventListener('mousedown', e => {
         //document.querySelector("#p1Checker").style.border = "3px solid black"; //paredaduok kad butu galima istrint
         p1Checker.style.top = `${e.clientY - 35}px`;
         p1Checker.style.left = `${e.clientX - 35}px`;
-        }
-        else if(playerTurn % 2 == 1 && elementUnderMouse.className.includes("two")){
-            thisPlayer = "two";
+}
+
+function twoMouseDown(elementUnderMouse,e){
+    thisPlayer = "two";
             const checkerNum = Number(currentChecker.dataset.checker);
             availableNumbers(checkerNum);
             for(let x in available){
@@ -93,7 +73,27 @@ document.addEventListener('mousedown', e => {
             //document.querySelector("#p1Checker").style.border = "3px solid black"; //paredaduok kad butu galima istrint
             p2Checker.style.top = `${e.clientY - 35}px`;
             p2Checker.style.left = `${e.clientX - 35}px`;
-            }
+}
+
+function oneMouseMove(){
+
+}
+
+function twoMouseMove(){
+}
+
+document.addEventListener('mousedown', e => {
+    isDragging = false;
+    const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
+    currentChecker = elementUnderMouse;
+    if (elementUnderMouse.className.includes("active")) {
+        available.length = 0;
+        if(playerTurn % 2 == 0 && elementUnderMouse.className.includes("one")){
+            oneMouseDown(elementUnderMouse, e);
+        }
+        else if(playerTurn % 2 == 1 && elementUnderMouse.className.includes("two")){
+            twoMouseDown(elementUnderMouse, e);    
+        }
     }
 });
 
@@ -101,15 +101,11 @@ document.addEventListener("mousemove", e => {
     if (isDragging) {
         if(playerTurn % 2 == 0 && thisPlayer == "one"){
         const p1Checker = document.querySelector("#p1Checker");
-        //document.querySelector("#p1Checker").style.background = "red"; //paredaduok kad butu galima istrint
-        //document.querySelector("#p1Checker").style.border = "3px solid black"; //paredaduok kad butu galima istrint
         p1Checker.style.top = `${e.clientY - 35}px`;
         p1Checker.style.left = `${e.clientX - 35}px`;
         }
         else if(playerTurn % 2 == 1 && thisPlayer == "two"){
             const p2Checker = document.querySelector("#p2Checker");
-            //document.querySelector("#p1Checker").style.background = "red"; //paredaduok kad butu galima istrint
-            //document.querySelector("#p1Checker").style.border = "3px solid black"; //paredaduok kad butu galima istrint
             p2Checker.style.top = `${e.clientY - 35}px`;
             p2Checker.style.left = `${e.clientX - 35}px`;
             }
