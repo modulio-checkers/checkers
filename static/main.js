@@ -1,6 +1,6 @@
 let isDragging = false;
 let currentChecker = '';
-let playerTurn = 0;
+//let turn = 0;
 const invalid = ["white", "container", "active", "player1-info", "player2-info", "timer1", "player1", "timer2", "player2"];
 const valid = ["black", "orange"];
 let available = [];
@@ -90,10 +90,10 @@ document.addEventListener('mousedown', e => {
     currentChecker = elementUnderMouse;
     if (elementUnderMouse.className.includes("active")) {
         available.length = 0;
-        if(playerTurn % 2 == 0 && elementUnderMouse.className.includes("one")){
+        if(turn % 2 == 0 && elementUnderMouse.className.includes("one")){
             oneMouseDown(elementUnderMouse, e);
         }
-        else if(playerTurn % 2 == 1 && elementUnderMouse.className.includes("two")){
+        else if(turn % 2 == 1 && elementUnderMouse.className.includes("two")){
             twoMouseDown(elementUnderMouse, e);    
         }
     }
@@ -101,10 +101,10 @@ document.addEventListener('mousedown', e => {
 
 document.addEventListener("mousemove", e => {
     if (isDragging) {
-        if(playerTurn % 2 == 0 && thisPlayer == "one"){
+        if(turn % 2 == 0 && thisPlayer == "one"){
             oneMouseMove(e);
         }
-        else if(playerTurn % 2 == 1 && thisPlayer == "two"){
+        else if(turn % 2 == 1 && thisPlayer == "two"){
             twoMouseMove(e);
             }
     }
@@ -141,7 +141,7 @@ document.addEventListener('mouseup', e => {
     else if(includes.includes(valid[0]) && includes.includes(valid[1]) && !elementUnderMouse.children[0].classList.value.includes("active")){
         elementUnderMouse.children[0].classList.add("active");
         elementUnderMouse.children[0].classList.add(`${thisPlayer}`);
-        playerTurn++;
+        turn++;
         console.log("A");
     }
     else{
