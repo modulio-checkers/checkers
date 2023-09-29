@@ -120,6 +120,7 @@ function get_possible_moves(board, from) {
             }
         }
     }
+
     console.log(from, result);
     // If there is at least one capture, remove all non-captures
     if (result.isCapture) {
@@ -151,8 +152,11 @@ function raw_validate_move(board, player, from, to) {
 
     // Validate player
     console.log(board[from], player);
-    if (board[from] < 0 && player !== 2) { return board; }
-    else if (board[from] > 0 && player !== 1) { return board; }
+    if (board[from] < 0 && player !== 2) {
+        return board;
+    } else if (board[from] > 0 && player !== 1) {
+        return board;
+    }
 
 
     // Find if the requested move is in the possible moves
