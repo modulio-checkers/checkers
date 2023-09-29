@@ -48,6 +48,7 @@ function oneMouseDown(elementUnderMouse, e){
         available[x].classList.add("orange");
     }
     elementUnderMouse.classList.remove("active");
+    elementUnderMouse.classList.remove("one");
     isDragging = true;
     document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
     const p1Checker = document.querySelector("#p1Checker");
@@ -63,6 +64,7 @@ function twoMouseDown(elementUnderMouse,e){
         available[x].classList.add("orange");
     }
     elementUnderMouse.classList.remove("active");
+    elementUnderMouse.classList.remove("two");
     isDragging = true;
     document.querySelector(".container").innerHTML += `<div id="p2Checker"></div>`;
     const p2Checker = document.querySelector("#p2Checker");

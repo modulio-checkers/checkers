@@ -58,12 +58,12 @@ html, body {
     height: 70px;
     width: 70px;
     border-radius: 100px;
-    background-color: red; /*comment*/
+    /* background-color: red; comment */
     border: 3px solid black;
 }
 
 .one{
-    background-color: red;
+    background-color: red !important;
 }
 
 
