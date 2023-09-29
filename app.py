@@ -76,6 +76,8 @@ def game(board: str):
     if board:
         if not board.is_full() and not board.is_player(flask.session['id']):
             board.set_last_player(flask.session['id'])
+
+            update_metadata(board)
             # Update board player ids
             db.session.query(BoardModel).filter_by(id=board.id).update(
                 {'player1': board.player1, 'player2': board.player2})
@@ -127,6 +129,10 @@ def move(data: dict):
 
 def update_board(board: Board):
     socketio.emit('update_board', {"turn": board.turn, "board": board.board}, room=board.id)
+
+
+def update_metadata(board: Board):
+    socketio.emit('update_metadata', {"player1": board.player1, "player2": board.player2}, room=board.id)
 
 
 if __name__ == '__main__':
