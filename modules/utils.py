@@ -1,4 +1,4 @@
-from board import Board
+from modules.board import Board
 from json import loads
 
 

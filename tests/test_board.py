@@ -1,5 +1,6 @@
 import unittest
-from board import Board, default_board_setup
+
+from modules.board import Board
 
 
 class TestBoard(unittest.TestCase):
@@ -27,15 +28,18 @@ class TestBoard(unittest.TestCase):
 
     def test_incorrect_capture(self):
         self.board.turn = 1
-        self.assertEqual(self.board.move("player1", 8, 26), False,
-                         "Should return False if capture isn't valid")
+        a = self.board.board.copy()
+        self.board.move("player1", 8, 26)
+        self.assertEqual(a, self.board.board, "Should not make move")
 
     def test_correct_capture(self):
         self.board.board[9] = 1
         self.board.board[18] = -1
         self.board.turn = 1
+        print(self.board.board)
         self.assertEqual(self.board.move("player1", 9, 27), True,
                          "Should return True if capture is valid")
+        print(self.board.board)
         self.assertEqual(self.board.board[18], 0, "Should be 0 after capture")
 
     def test_incorrect_queen_movement(self):

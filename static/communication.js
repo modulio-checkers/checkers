@@ -7,7 +7,7 @@ function register_server_ready(callback) {
     Register a callback to be called when the server is ready to start the game.
     The callback will be called with no arguments.
      */
-    socket.on("ready_server", callback);
+    socket.once("ready_server", callback);
     server_ready_registered = true;
 }
 
