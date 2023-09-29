@@ -33,6 +33,10 @@ html, body {
     background-color: rgb(37, 37, 37);
 }
 
+.white{
+    background-color: rgb(190, 190, 190);
+}
+
 .player1-info {
     grid-row: 2/3;
     grid-column: 2/3;
@@ -58,14 +62,14 @@ html, body {
     border: 3px solid black;
 }
 
-/* .one{
+.one{
     background-color: red;
 }
-*/
 
-/* .two{
+
+.two{
     background-color: blue;
-}  */
+} 
 
 /* .player{
     position: absolute;
@@ -85,14 +89,22 @@ html, body {
 
 } */
 
-#p1Checker {
+#p1Checker, #p2Checker {
     position: absolute;
     height: 70px;
     width: 70px;
     border-radius: 100px;
-    background-color: white;
+    border: 3px solid black;
 }
 
 .orange{
     background-color: orange;
+}
+
+#p1Checker{
+    background-color: red;
+}
+
+#p2Checker{
+    background-color: blue;
 }
