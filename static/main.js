@@ -10,7 +10,12 @@ function serverReady(){
     console.log("server ready");
 }
 
+register_server_ready(serverReady);
 
+const allChecker = document.querySelectorAll(".checker")
+// for(x in allChecker){
+//     console.log(x, allChecker[x].dataset.row, allChecker[x].dataset.column);
+// }
 
 function availableNumbers(checkerNum){
     if(checkerNum == 1){

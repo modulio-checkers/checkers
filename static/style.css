@@ -1,3 +1,10 @@
+:root{
+    --red: red;
+    --blue: blue;
+    --white: rgb(190, 190, 190);
+    --black: rgb(37, 37, 37);
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -30,11 +37,11 @@ html, body {
 }
 
 .black {
-    background-color: rgb(37, 37, 37);
+    background-color: var(--black);
 }
 
 .white{
-    background-color: rgb(190, 190, 190);
+    background-color: var(--white);
 }
 
 .player1-info {
@@ -63,18 +70,13 @@ html, body {
 }
 
 .one{
-    background-color: red !important;
+    background-color: var(--red) !important;
 }
 
 
 .two{
-<<<<<<< HEAD
-    background-color: blue;
+    background-color: var(--blue);
 } 
-=======
-    background-color: blue !important;
-}
->>>>>>> 0d5a83782c42e59fdeefa6e5bd3149033abac2c4
 
 /* .player{
     position: absolute;
@@ -107,9 +109,14 @@ html, body {
 }
 
 #p1Checker{
-    background-color: red;
+    background-color: var(--red);
 }
 
 #p2Checker{
-    background-color: blue;
+    background-color: var(--blue);
+}
+
+
+.board{
+    transform: rotate(180deg);
 }
