@@ -68,8 +68,13 @@ html, body {
 
 
 .two{
+<<<<<<< HEAD
     background-color: blue;
 } 
+=======
+    background-color: blue !important;
+}
+>>>>>>> 0d5a83782c42e59fdeefa6e5bd3149033abac2c4
 
 /* .player{
     position: absolute;

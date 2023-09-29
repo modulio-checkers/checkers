@@ -78,8 +78,20 @@ class Board:
         """
         return self.player1 == player_id or self.player2 == player_id
 
+    def move(self, player_id: str, sq_from: int, sq_to: int):
+        print(self.board)
+        print([i for i in self.board])
+        print(type(self.board))
+        piece_from = self.board.pop(sq_from)
+        piece_to = self.board.pop(sq_to)
 
-def default_board_setup():
+        self.board.insert(sq_from, piece_to)
+        self.board.insert(sq_to, piece_from)
+
+        return True
+
+
+def default_board_setup() -> list:
     """
     Sets up the default board configuration for checkers.
     1 - Player 1's piece, 2 - queen

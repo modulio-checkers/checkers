@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkers</title>
     <link rel="stylesheet" href="/static/style.css">
+    <script>
+        const gameId = "{{ board.id }}";
+
+        let player1 = "{{ board.player1 }}";
+        let player2 = "{{ board.player2 }}";
+
+        let turn = {{ board.turn }};
+        let board = {{ board.board }};
+    </script>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+            integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+            crossorigin="anonymous"></script>
+    <script src="/static/communication.js"></script>
     <script src="/static/main.js" defer></script>
 </head>
 <body>
