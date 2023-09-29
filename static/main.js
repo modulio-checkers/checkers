@@ -1,4 +1,3 @@
-//Kol kas tik vienas zaidejas veliau reiks pridet padigubintas funkcijas antram
 let isDragging = false;
 let currentChecker = '';
 let playerTurn = 0;
@@ -42,44 +41,45 @@ function availableNumbers(checkerNum){
 
 function oneMouseDown(elementUnderMouse, e){
     thisPlayer = "one";
-        console.log(thisPlayer);
-        const checkerNum = Number(currentChecker.dataset.checker);
-        availableNumbers(checkerNum);
-        for(let x in available){
-            available[x].classList.add("orange");
-        }
-        elementUnderMouse.classList.remove("active");
-        isDragging = true;
-        document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
-        const p1Checker = document.querySelector("#p1Checker");
-        //document.querySelector("#p1Checker").style.background = "red"; //paredaduok kad butu galima istrint
-        //document.querySelector("#p1Checker").style.border = "3px solid black"; //paredaduok kad butu galima istrint
-        p1Checker.style.top = `${e.clientY - 35}px`;
-        p1Checker.style.left = `${e.clientX - 35}px`;
+    console.log(thisPlayer);
+    const checkerNum = Number(currentChecker.dataset.checker);
+    availableNumbers(checkerNum);
+    for(let x in available){
+        available[x].classList.add("orange");
+    }
+    elementUnderMouse.classList.remove("active");
+    isDragging = true;
+    document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
+    const p1Checker = document.querySelector("#p1Checker");
+    p1Checker.style.top = `${e.clientY - 35}px`;
+    p1Checker.style.left = `${e.clientX - 35}px`;
 }
 
 function twoMouseDown(elementUnderMouse,e){
     thisPlayer = "two";
-            const checkerNum = Number(currentChecker.dataset.checker);
-            availableNumbers(checkerNum);
-            for(let x in available){
-                available[x].classList.add("orange");
-            }
-            elementUnderMouse.classList.remove("active");
-            isDragging = true;
-            document.querySelector(".container").innerHTML += `<div id="p2Checker"></div>`;
-            const p2Checker = document.querySelector("#p2Checker");
-            //document.querySelector("#p1Checker").style.background = "red"; //paredaduok kad butu galima istrint
-            //document.querySelector("#p1Checker").style.border = "3px solid black"; //paredaduok kad butu galima istrint
-            p2Checker.style.top = `${e.clientY - 35}px`;
-            p2Checker.style.left = `${e.clientX - 35}px`;
+    const checkerNum = Number(currentChecker.dataset.checker);
+    availableNumbers(checkerNum);
+    for(let x in available){
+        available[x].classList.add("orange");
+    }
+    elementUnderMouse.classList.remove("active");
+    isDragging = true;
+    document.querySelector(".container").innerHTML += `<div id="p2Checker"></div>`;
+    const p2Checker = document.querySelector("#p2Checker");
+    p2Checker.style.top = `${e.clientY - 35}px`;
+    p2Checker.style.left = `${e.clientX - 35}px`;
 }
 
-function oneMouseMove(){
-
+function oneMouseMove(e){
+    const p1Checker = document.querySelector("#p1Checker");
+    p1Checker.style.top = `${e.clientY - 35}px`;
+    p1Checker.style.left = `${e.clientX - 35}px`;
 }
 
-function twoMouseMove(){
+function twoMouseMove(e){
+    const p2Checker = document.querySelector("#p2Checker");
+    p2Checker.style.top = `${e.clientY - 35}px`;
+    p2Checker.style.left = `${e.clientX - 35}px`;
 }
 
 document.addEventListener('mousedown', e => {
@@ -100,14 +100,10 @@ document.addEventListener('mousedown', e => {
 document.addEventListener("mousemove", e => {
     if (isDragging) {
         if(playerTurn % 2 == 0 && thisPlayer == "one"){
-        const p1Checker = document.querySelector("#p1Checker");
-        p1Checker.style.top = `${e.clientY - 35}px`;
-        p1Checker.style.left = `${e.clientX - 35}px`;
+            oneMouseMove(e);
         }
         else if(playerTurn % 2 == 1 && thisPlayer == "two"){
-            const p2Checker = document.querySelector("#p2Checker");
-            p2Checker.style.top = `${e.clientY - 35}px`;
-            p2Checker.style.left = `${e.clientX - 35}px`;
+            twoMouseMove(e);
             }
     }
 });
@@ -171,4 +167,4 @@ document.addEventListener('mouseup', e => {
 
 })
 
-//padaryt skirtingas spalvas
+//aptvarkyti mouseup funkcija
