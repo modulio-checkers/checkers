@@ -33,7 +33,7 @@ function register_update_metadata(callback) {
      */
     socket.on("update_metadata", (data) => {
         player1 = data.player1;
-        player2 = data.player2
+        player2 = data.player2;
         callback();
     });
     update_metadata_registered = true;
