@@ -8,9 +8,20 @@ let thisPlayer;
 
 function serverReady(){
     console.log("server ready");
+    startGame();
+}
+
+function updateBoard(object){
+    console.log(object.turn);
+    object.board 
 }
 
 register_server_ready(serverReady);
+
+register_update_board(updateBoard);
+
+
+
 
 const allChecker = document.querySelectorAll(".checker")
 // for(x in allChecker){
@@ -95,6 +106,7 @@ function twoMouseMove(e){
     p2Checker.style.left = `${e.clientX - 35}px`;
 }
 
+function startGame(){
 document.addEventListener('mousedown', e => {
     isDragging = false;
     const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
@@ -179,5 +191,7 @@ document.addEventListener('mouseup', e => {
     //kinda veikiantis kodas^^^^
 
 })
-
+}
 //aptvarkyti mouseup funkcija
+//move validation and update board
+//padaryt kad apsiverstu lenta
