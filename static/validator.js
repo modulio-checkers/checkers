@@ -54,7 +54,7 @@ function get_possible_moves(board, from) {
         isCapture: false
     };
 
-    search(board, from);
+    search(board.map(function(x) { return x }), from);
 
     function search(brd, pos, captured) {
         checked[pos] = true;
