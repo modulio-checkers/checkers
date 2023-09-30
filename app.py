@@ -1,9 +1,17 @@
 import flask
-from flask_sqlalchemy import SQLAlchemy
 import flask_socketio as io
+from flask_sqlalchemy import SQLAlchemy
+
+try:
+    from modules.board import *
+except ImportError:
+    print("Validator not found. Compiling...")
+    import compile
+    from modules.board import *
+
 from sqlalchemy.orm import DeclarativeBase
-from board import *
-from utils import *
+
+from modules.utils import *
 import json
 
 

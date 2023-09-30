@@ -1,5 +1,7 @@
-import uuid
 import random
+import uuid
+
+from modules.validator import validator as validator
 
 
 class Move:
@@ -79,16 +81,17 @@ class Board:
         return self.player1 == player_id or self.player2 == player_id
 
     def move(self, player_id: str, sq_from: int, sq_to: int):
-        print(self.board)
-        print([i for i in self.board])
-        print(type(self.board))
-        piece_from = self.board.pop(sq_from)
-        piece_to = self.board.pop(sq_to)
+        if not self.is_player(player_id):
+            return False
+        old_board = self.board.copy()
+        v = validator.raw_validate_move(self.board, 1 if player_id == self.player1 else 2, sq_from, sq_to).to_list()
+        if v != old_board:
+            self.board = v
+            self.moves.append(Move(sq_from, sq_to))
+            self.turn = 1 if self.turn == 2 else 2
+            return True
+        return False
 
-        self.board.insert(sq_from, piece_to)
-        self.board.insert(sq_to, piece_from)
-
-        return True
 
 
 def default_board_setup() -> list:
