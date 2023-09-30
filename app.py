@@ -111,6 +111,7 @@ def ready(data: dict):
                     # Join room
                     socketio.emit('ready_server')
                     update_board(board)
+                    update_metadata(board)
             else:
                 socketio.emit('error', {'message': 'You are not a player in this game.'})
 
