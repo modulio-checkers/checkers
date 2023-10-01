@@ -7,12 +7,12 @@ let available = [];
 let thisPlayer;
 
 function serverReady(){
-    console.log("server ready");
+    console.log("server ready")
     startGame();
 }
 
 function updateBoard(object){
-    console.log(object.turn);
+    object.turn;
     object.board 
 }
 
@@ -25,7 +25,6 @@ register_update_board(updateBoard);
 
 const allChecker = document.querySelectorAll(".checker")
 // for(x in allChecker){
-//     console.log(x, allChecker[x].dataset.row, allChecker[x].dataset.column);
 // }
 
 function availableNumbers(checkerNum){
@@ -63,7 +62,6 @@ function availableNumbers(checkerNum){
 
 function oneMouseDown(elementUnderMouse, e){
     thisPlayer = "one";
-    console.log(thisPlayer);
     const checkerNum = Number(currentChecker.dataset.checker);
     availableNumbers(checkerNum);
     for(let x in available){
@@ -134,53 +132,39 @@ document.addEventListener("mousemove", e => {
 });
 
 document.addEventListener('mouseup', e => {
-    console.log(available);
     isDragging = false;
-    console.log(document.querySelector("#p1Checker"));
-    console.log(thisPlayer);
     if(thisPlayer == "one"){
-        console.log("A");
         document.querySelector("#p1Checker").remove();
     }
     else if(thisPlayer == "two"){
         document.querySelector("#p2Checker").remove();
     }
-    console.log(`.${thisPlayer}`);
     let elementUnderMouse = '';
     elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
     let includes;
-    console.log(document.querySelector("#p1Checker"));
-    console.log(elementUnderMouse);
     if(elementUnderMouse !== null){
         includes = elementUnderMouse.classList.value;
-        console.log("A");
     }
-    console.log(valid, includes);
     if(elementUnderMouse === null){
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add(`${thisPlayer}`); 
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); 
-        console.log("A");
     }
     else if(includes.includes(valid[0]) && includes.includes(valid[1]) && !elementUnderMouse.children[0].classList.value.includes("active")){
         elementUnderMouse.children[0].classList.add("active");
         elementUnderMouse.children[0].classList.add(`${thisPlayer}`);
         turn++;
-        console.log("A");
     }
     else{
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); 
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add(`${thisPlayer}`); 
-        console.log("A");
     }
         //tarkim geras naujas kodas ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    console.log(available[0].classList[available.length-1]);
     for(let x in available){
         const removing = document.querySelectorAll(".orange");
         for(let h in removing){
             removing[h].classList.remove("orange");
         }
     }
-    console.log(available);
 
     // else if(elementUnderMouse === null || invalid.some(element => includes.includes(element))){
     //     document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
