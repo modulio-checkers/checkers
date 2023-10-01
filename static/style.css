@@ -1,3 +1,10 @@
+:root{
+    --red: red;
+    --blue: blue;
+    --white: rgb(190, 190, 190);
+    --black: rgb(37, 37, 37);
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -30,7 +37,11 @@ html, body {
 }
 
 .black {
-    background-color: rgb(37, 37, 37);
+    background-color: var(--black);
+}
+
+.white{
+    background-color: var(--white);
 }
 
 .player1-info {
@@ -54,18 +65,18 @@ html, body {
     height: 70px;
     width: 70px;
     border-radius: 100px;
-    background-color: red; /*comment*/
+    /* background-color: red; comment */
     border: 3px solid black;
 }
 
 .one{
-    background-color: red !important;
+    background-color: var(--red) !important;
 }
 
 
 .two{
-    background-color: blue !important;
-}
+    background-color: var(--blue);
+} 
 
 /* .player{
     position: absolute;
@@ -85,10 +96,27 @@ html, body {
 
 } */
 
-#p1Checker {
+#p1Checker, #p2Checker {
     position: absolute;
     height: 70px;
     width: 70px;
     border-radius: 100px;
-    background-color: white;
+    border: 3px solid black;
+}
+
+.orange{
+    background-color: orange;
+}
+
+#p1Checker{
+    background-color: var(--red);
+}
+
+#p2Checker{
+    background-color: var(--blue);
+}
+
+
+.board{
+    transform: rotate(180deg);
 }
