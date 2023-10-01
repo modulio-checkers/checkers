@@ -1,13 +1,19 @@
+import os
+
 import flask
 import flask_socketio as io
 from flask_sqlalchemy import SQLAlchemy
 
 try:
-    from modules.board import *
-except ImportError:
-    print("Validator not found. Compiling...")
+    import modules.validator
+
+    if modules.validator.COMPILED_FROM_DATE != str(os.path.getmtime("./static/validator.js")):
+        raise Exception("Validator is out of date.")
+except:
+    print("Validator not found / is out of date. Compiling...")
     import compile
-    from modules.board import *
+
+from modules.board import *
 
 from sqlalchemy.orm import DeclarativeBase
 
