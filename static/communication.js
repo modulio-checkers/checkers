@@ -1,6 +1,7 @@
 const socket = io();
 let server_ready_registered = false;
 let board_update_registered = false;
+let update_metadata_registered = false;
 
 function register_server_ready(callback) {
     /*
@@ -33,8 +34,9 @@ function register_update_metadata(callback) {
     socket.on("update_metadata", (data) => {
         player1 = data.player1;
         player2 = data.player2;
+        callback();
     });
-    callback();
+    update_metadata_registered = true;
 }
 
 function ready() {
@@ -43,7 +45,7 @@ function ready() {
     This must be called after registering callbacks.
     After both players have called ready(), the server will send ready_server and update the board.
      */
-    if (!server_ready_registered && !board_update_registered) {
+    if (!server_ready_registered || !board_update_registered || !update_metadata_registered) {
         throw new Error("Callbacks must be registered before calling ready()");
     }
     socket.emit("ready", {gameId: gameId});

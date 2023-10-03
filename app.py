@@ -1,9 +1,23 @@
+import os
+
 import flask
-from flask_sqlalchemy import SQLAlchemy
 import flask_socketio as io
+from flask_sqlalchemy import SQLAlchemy
+
+try:
+    import modules.validator
+
+    if modules.validator.COMPILED_FROM_DATE != str(os.path.getmtime("./static/validator.js")):
+        raise Exception("Validator is out of date.")
+except:
+    print("Validator not found / is out of date. Compiling...")
+    import compile
+
+from modules.board import *
+
 from sqlalchemy.orm import DeclarativeBase
-from board import *
-from utils import *
+
+from modules.utils import *
 import json
 
 
@@ -103,6 +117,7 @@ def ready(data: dict):
                     # Join room
                     socketio.emit('ready_server')
                     update_board(board)
+                    update_metadata(board)
             else:
                 socketio.emit('error', {'message': 'You are not a player in this game.'})
 
