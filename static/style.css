@@ -10,7 +10,6 @@ html, body {
     margin: 0;
     overflow: hidden;
 }
-
 .container {
     height: 100%;
     width: 100%;
@@ -18,7 +17,6 @@ html, body {
     grid-template-columns: auto 650px auto;
     grid-template-rows: auto auto 650px auto auto;
 }
-
 .board {
     grid-row: 3/4;
     grid-column: 2/3;
@@ -26,9 +24,7 @@ html, body {
     display: grid;
     grid-template-columns: repeat(8, 81.25px);
     grid-template-rows: repeat(8, 81.25px);
-
 }
-
 .square {
     border: 2px solid black;
     display: flex;
@@ -37,6 +33,7 @@ html, body {
 }
 
 .black {
+    background-color: rgb(37, 37, 37);
     background-color: var(--black);
 }
 
@@ -48,33 +45,33 @@ html, body {
     grid-row: 2/3;
     grid-column: 2/3;
 }
-
 .player2-info {
     grid-row: 4/5;
     grid-column: 2/3;
 }
-
 .player1-info, .player2-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: auto 10%
 }
-
 .active{
     height: 70px;
     width: 70px;
     border-radius: 100px;
     /* background-color: red; comment */
+    /* background-color: red; comment */
     border: 3px solid black;
 }
 
 .one{
+    /* background-color: red !important; */
     background-color: var(--red) !important;
 }
 
 
 .two{
+    /* background-color: blue !important; */
     background-color: var(--blue);
 } 
 
@@ -88,12 +85,10 @@ html, body {
     left: 0px;
     opacity: 0%;
 }
-
 .player.pActive{
     background-color: red;
     cursor: none !important;
     opacity: 100%;
-
 } */
 
 #p1Checker, #p2Checker {
@@ -101,6 +96,7 @@ html, body {
     height: 70px;
     width: 70px;
     border-radius: 100px;
+    background-color: white;
     border: 3px solid black;
 }
 
