@@ -6,7 +6,7 @@ const valid = ["black", "orange"];
 let available = [];
 let thisPlayer;
 let checkerNum='';
-const allChecker = document.querySelectorAll(".checker")
+const allChecker = document.querySelectorAll(".checker");
 
 function serverReady(){
     console.log("server ready");
@@ -17,12 +17,31 @@ function serverReady(){
 }
 
 function updateBoard(object){
-    console.log(object.turn);
-    console.log(object.board); 
+    // console.log(object.turn);
+    // console.log(object.board);
+    let board = object.board; 
     for(let x in allChecker){
+        // allChecker[x].classList.remove("one")
+        if(board[x]===0){
+
+        }
+        if(board[x]===1){
+
+        }
+        if(board[x]===2){
+
+        }
+        if(board[x]===-1){
+
+        }
+        if(board[x]===-2)[
+
+        ]
         console.log(allChecker[x]);
     }
+
 }
+
 function updateMetadata(){
 
 }
