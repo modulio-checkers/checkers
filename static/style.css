@@ -92,6 +92,6 @@ html, body {
 }
 
 
-.board{
+.rotate{
     transform: rotate(180deg);
 }

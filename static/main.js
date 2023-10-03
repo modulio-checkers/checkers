@@ -6,18 +6,22 @@ const valid = ["black", "orange"];
 let available = [];
 let thisPlayer;
 let checkerNum='';
+const allChecker = document.querySelectorAll(".checker")
 
 function serverReady(){
     console.log("server ready");
     startGame();
-    // console.log(localPlayer);
-    // if(localPlayer === 2)
-    //         document.querySelector(".board").style.transform = "rotate(180deg)"
+    console.log(localPlayer);
+    if(localPlayer === 2)
+            document.querySelector(".board").classList.add("rotate");
 }
 
 function updateBoard(object){
     console.log(object.turn);
     console.log(object.board); 
+    for(let x in allChecker){
+        console.log(allChecker[x]);
+    }
 }
 function updateMetadata(){
 
@@ -31,7 +35,6 @@ register_update_metadata(updateMetadata)
 
 
 
-const allChecker = document.querySelectorAll(".checker")
 // for(x in allChecker){
 // }
 function availableNumbers(checkerNum){
