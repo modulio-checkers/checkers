@@ -17,14 +17,30 @@ function calculate_possible_moves(board, player) {
     -1 - player 2's checker, -2 player 2's queen
      */
     const possible_moves = {};
-
+    let is_capture = false;
     for (let i = 0; i < 64; i++) {
         if (board[i] > 0 && player === 1) {
             possible_moves[i] = get_possible_moves(board, i);
         } else if (board[i] < 0 && player === 2) {
             possible_moves[i] = get_possible_moves(board, i);
         }
+        for (let j = 0; j < possible_moves[i].moves.length; j++) {
+            if (possible_moves[i].moves[j].captured.length > 0) {
+                is_capture = true;
+            }
+        }
+        if (is_capture) {
+            for (let j = 0; j < possible_moves[i].moves.length; j++) {
+                if (possible_moves[i].moves[j].captured.length === 0) {
+                    delete possible_moves[i].moves[j];
+                }
+            }
+        }
     }
+
+
+
+    return possible_moves;
 }
 
 function get_possible_moves(board, from) {

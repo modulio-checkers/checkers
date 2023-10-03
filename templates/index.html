@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/style.css">
     <script>
         const gameId = "{{ board.id }}";
+        const localPlayer = {{ local_player }}; // Can be 1 or 2
 
         let player1 = "{{ board.player1 }}";
         let player2 = "{{ board.player2 }}";

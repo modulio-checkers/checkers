@@ -97,7 +97,8 @@ def game(board: str):
                 {'player1': board.player1, 'player2': board.player2})
             db.session.commit()
 
-        return flask.render_template('index.html', board=board)
+        return flask.render_template('index.html', board=board,
+                                     local_player=1 if board.player1 == flask.session["id"] else 2)
 
     return "Error"
 
