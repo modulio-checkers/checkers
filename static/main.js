@@ -23,16 +23,23 @@ function updateBoard(object){
     for(let x in allChecker){
         // allChecker[x].classList.remove("one")
         if(board[x]===0){
-
+            allChecker.classList.remove("active");
+            allChecker.classList.remove("one");
+            allChecker.classList.remove("two");
         }
-        if(board[x]===1){
-
+        if(board[x]===1){   
+            console.log(allChecker.classList);
+            allChecker.classList.add("active"); //neveiks
+            allChecker.classList.add("one"); //neveiks
+            allChecker.classList.remove("two");
         }
         if(board[x]===2){
 
         }
         if(board[x]===-1){
-
+            allChecker.classList.add("active"); //neveiks
+            allChecker.classList.remove("one");
+            allChecker.classList.add("two"); //neveiks
         }
         if(board[x]===-2)[
 
