@@ -6,7 +6,7 @@ const valid = ["black", "orange"];
 let available = [];
 let thisPlayer;
 let checkerNum='';
-const allChecker = document.querySelectorAll(".checker");
+const allSquares = document.querySelectorAll(".square");
 
 function serverReady(){
     console.log("server ready");
@@ -20,31 +20,34 @@ function updateBoard(object){
     // console.log(object.turn);
     // console.log(object.board);
     let board = object.board; 
-    for(let x in allChecker){
-        // allChecker[x].classList.remove("one")
+    // console.log(allChecker);
+    console.log(board);
+    // console.log(allSquares[0].children[0].className.includes("checker")); //<<<<<<<<<<<<<<<<<<<<<<<<<< NEVEIKIA
+    for(let x in allSquares){
+        // console.log(allSquares[x].children[0].classList);
+        if(allSquares[x].children[0].className.includes("checker")){
         if(board[x]===0){
-            allChecker.classList.remove("active");
-            allChecker.classList.remove("one");
-            allChecker.classList.remove("two");
+            allSquares[x].children[0].classList.remove("active");
+            allSquares[x].children[0].classList.remove("one");
+            allSquares[x].children[0].classList.remove("two");
         }
         if(board[x]===1){   
-            console.log(allChecker.classList);
-            allChecker.classList.add("active"); //neveiks
-            allChecker.classList.add("one"); //neveiks
-            allChecker.classList.remove("two");
+              allSquares[x].children[0].classList.add("active"); //neveiks
+            allSquares[x].children[0].classList.add("one"); //neveiks
+            allSquares[x].children[0].classList.remove("two");
         }
         if(board[x]===2){
 
         }
         if(board[x]===-1){
-            allChecker.classList.add("active"); //neveiks
-            allChecker.classList.remove("one");
-            allChecker.classList.add("two"); //neveiks
+            allSquares[x].children[0].classList.add("active"); //neveiks
+            allSquares[x].children[0].classList.remove("one");
+            allSquares[x].children[0].classList.add("two"); //neveiks
         }
-        if(board[x]===-2)[
+        if(board[x]===-2){
 
-        ]
-        console.log(allChecker[x]);
+        }
+        }
     }
 
 }
