@@ -11,42 +11,52 @@ const allSquares = document.querySelectorAll(".square");
 function serverReady(){
     console.log("server ready");
     startGame();
-    console.log(localPlayer);
+    console.log("local player:", localPlayer);
     if(localPlayer === 2)
             document.querySelector(".board").classList.add("rotate");
 }
 
+turn= localPlayer;
+
 function updateBoard(object){
-    // console.log(object.turn);
-    // console.log(object.board);
     let board = object.board; 
-    // console.log(allChecker);
     console.log(board);
-    // console.log(allSquares[0].children[0].className.includes("checker")); //<<<<<<<<<<<<<<<<<<<<<<<<<< NEVEIKIA
+    console.log("turn:", turn);
+    // turn = object.turn;
     for(let x in allSquares){
-        // console.log(allSquares[x].children[0].classList);
-        if(allSquares[x].children[0].className.includes("checker")){
-        if(board[x]===0){
-            allSquares[x].children[0].classList.remove("active");
-            allSquares[x].children[0].classList.remove("one");
-            allSquares[x].children[0].classList.remove("two");
-        }
-        if(board[x]===1){   
-              allSquares[x].children[0].classList.add("active"); //neveiks
-            allSquares[x].children[0].classList.add("one"); //neveiks
-            allSquares[x].children[0].classList.remove("two");
-        }
-        if(board[x]===2){
+        // console.log(x, Number.isInteger(Number(x))); //do not change 'Number.isInteger(Number(x))'
+        if(Number.isInteger(Number(x)) && allSquares[x].children[0] !== undefined && allSquares[x].children[0].classList[0] == "checker"){
+            // if(board[x] == 0){
+            //     allSquares[x].children[0].classList.remove("active");
+            //     allSquares[x].children[0].classList.remove("one");
+            //     allSquares[x].children[0].classList.remove("two");
+            // }
+            // else{
+            //     allSquares[x].children[0].classList.add("one");
+            // }
+            // console.log(board[x]);
+            // if(board[x]==1){
+            // allSquares[x].children[0].classList.add("one");
+            // allSquares[x].children[0].classList.add("active");
+            // }
 
-        }
-        if(board[x]===-1){
-            allSquares[x].children[0].classList.add("active"); //neveiks
-            allSquares[x].children[0].classList.remove("one");
-            allSquares[x].children[0].classList.add("two"); //neveiks
-        }
-        if(board[x]===-2){
+            // else if(board[x]===1){   
+            //       allSquares[x].children[0].classList.add("active"); //neveiks
+            //     allSquares[x].children[0].classList.add("one"); //neveiks
+            //     allSquares[x].children[0].classList.remove("two");
+            // }
+            // else if(board[x]===2){
 
-        }
+            // }
+            // else if(board[x]===-1){
+            //     allSquares[x].children[0].classList.add("active"); //neveiks
+            //     allSquares[x].children[0].classList.remove("one");
+            //     allSquares[x].children[0].classList.add("two"); //neveiks
+            // }
+            // else if(board[x]===-2){
+
+            // }   
+            // console.log(board[x], allSquares[x].children[0].classList)
         }
     }
 
@@ -188,6 +198,7 @@ document.addEventListener('mouseup', e => {
         elementUnderMouse.children[0].classList.add(`${thisPlayer}`);
         turn++;
         move(checkerNum-1, elementUnderMouse.children[0].dataset.checker-1)
+        console.log(checkerNum-1, elementUnderMouse.children[0].dataset.checker-1);
     }
     else{
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); 
