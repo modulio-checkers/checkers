@@ -5,27 +5,80 @@ const invalid = ["white", "container", "active", "player1-info", "player2-info",
 const valid = ["black", "orange"];
 let available = [];
 let thisPlayer;
+let checkerNum='';
+const allSquares = document.querySelectorAll(".square");
 
 function serverReady(){
     console.log("server ready");
     startGame();
+    console.log("local player:", localPlayer);
+    if(localPlayer === 1)
+            document.querySelector(".board").classList.add("rotate");
 }
+
+turn= localPlayer+1;
 
 function updateBoard(object){
-    console.log(object.turn);
-    object.board 
+    let board = object.board; 
+    console.log(board);
+    console.log("turn:", turn);
+    // turn = object.turn;
+    for(let x in board){
+        allSquares[x].innerHTML += `<p class="pp">${x}</p>` //skaiciukai
+        
+
+        // console.log(x, Number.isInteger(Number(x))); //do not change 'Number.isInteger(Number(x))'
+        // if(Number.isInteger(Number(x)) && allSquares[x].children[0] !== undefined && allSquares[x].children[0].classList[0] == "checker"){
+            // console.log(board[x], allSquares[x].children[0].classList )
+            // if(board[x] == 0){
+            //     allSquares[x].children[0].classList.remove("active");
+            //     allSquares[x].children[0].classList.remove("one");
+            //     allSquares[x].children[0].classList.remove("two");
+            // }
+            // else{
+            //     allSquares[x].children[0].classList.add("one");
+            // }
+            // console.log(board[x]);
+            // if(board[x]==1){
+            // allSquares[x].children[0].classList.add("one");
+            // allSquares[x].children[0].classList.add("active");
+            // }
+
+            // else if(board[x]===1){   
+            //       allSquares[x].children[0].classList.add("active"); //neveiks
+            //     allSquares[x].children[0].classList.add("one"); //neveiks
+            //     allSquares[x].children[0].classList.remove("two");
+            // }
+            // else if(board[x]===2){
+
+            // }
+            // else if(board[x]===-1){
+            //     allSquares[x].children[0].classList.add("active"); //neveiks
+            //     allSquares[x].children[0].classList.remove("one");
+            //     allSquares[x].children[0].classList.add("two"); //neveiks
+            // }
+            // else if(board[x]===-2){
+
+            // }   
+            // console.log(board[x], allSquares[x].children[0].classList)
+        // }
+    }
+
 }
 
+function updateMetadata(){
+
+}
+
+
 register_server_ready(serverReady);
-
 register_update_board(updateBoard);
+register_update_metadata(updateMetadata)
 
 
 
 
-const allChecker = document.querySelectorAll(".checker")
 // for(x in allChecker){
-//     console.log(x, allChecker[x].dataset.row, allChecker[x].dataset.column);
 // }
 function availableNumbers(checkerNum){
     if(checkerNum == 1){
@@ -61,8 +114,7 @@ function availableNumbers(checkerNum){
 //pakeist, kad veiktu su grid system
 function oneMouseDown(elementUnderMouse, e){
     thisPlayer = "one";
-    console.log(thisPlayer);
-    const checkerNum = Number(currentChecker.dataset.checker);
+    checkerNum = Number(currentChecker.dataset.checker);
     availableNumbers(checkerNum);
     for(let x in available){
         available[x].classList.add("orange");
@@ -77,7 +129,7 @@ function oneMouseDown(elementUnderMouse, e){
 }
 function twoMouseDown(elementUnderMouse,e){
     thisPlayer = "two";
-    const checkerNum = Number(currentChecker.dataset.checker);
+    checkerNum = Number(currentChecker.dataset.checker);
     availableNumbers(checkerNum);
     for(let x in available){
         available[x].classList.add("orange");
@@ -127,53 +179,42 @@ document.addEventListener("mousemove", e => {
     }
 });
 document.addEventListener('mouseup', e => {
-    console.log(available);
+    console.log(checkerNum);
     isDragging = false;
-    console.log(document.querySelector("#p1Checker"));
-    console.log(thisPlayer);
     if(thisPlayer == "one"){
-        console.log("A");
         document.querySelector("#p1Checker").remove();
     }
     else if(thisPlayer == "two"){
         document.querySelector("#p2Checker").remove();
     }
-    console.log(`.${thisPlayer}`);
     let elementUnderMouse = '';
     elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
     let includes;
-    console.log(document.querySelector("#p1Checker"));
-    console.log(elementUnderMouse);
     if(elementUnderMouse !== null){
         includes = elementUnderMouse.classList.value;
-        console.log("A");
     }
-    console.log(valid, includes);
     if(elementUnderMouse === null){
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add(`${thisPlayer}`); 
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); 
-        console.log("A");
     }
     else if(includes.includes(valid[0]) && includes.includes(valid[1]) && !elementUnderMouse.children[0].classList.value.includes("active")){
         elementUnderMouse.children[0].classList.add("active");
         elementUnderMouse.children[0].classList.add(`${thisPlayer}`);
         turn++;
-        console.log("A");
+        move(checkerNum-1, elementUnderMouse.children[0].dataset.checker-1)
+        console.log(checkerNum-1, elementUnderMouse.children[0].dataset.checker-1);
     }
     else{
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); 
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add(`${thisPlayer}`); 
-        console.log("A");
     }
         //tarkim geras naujas kodas ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    console.log(available[0].classList[available.length-1]);
     for(let x in available){
         const removing = document.querySelectorAll(".orange");
         for(let h in removing){
             removing[h].classList.remove("orange");
         }
     }
-    console.log(available);
     // else if(elementUnderMouse === null || invalid.some(element => includes.includes(element))){
     //     document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
     // }

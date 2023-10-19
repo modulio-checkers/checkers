@@ -33,7 +33,6 @@ html, body {
 }
 
 .black {
-    background-color: rgb(37, 37, 37);
     background-color: var(--black);
 }
 
@@ -59,37 +58,17 @@ html, body {
     height: 70px;
     width: 70px;
     border-radius: 100px;
-    /* background-color: red; comment */
-    /* background-color: red; comment */
-    border: 3px solid black;
+    /* border: 3px solid black; */
 }
 
 .one{
-    /* background-color: red !important; */
     background-color: var(--red) !important;
 }
 
 
 .two{
-    /* background-color: blue !important; */
     background-color: var(--blue);
 } 
-
-/* .player{
-    position: absolute;
-    height: 70px;
-    width: 70px;
-    border-radius: 100px;
-    background-color: white;
-    top: 0px;
-    left: 0px;
-    opacity: 0%;
-}
-.player.pActive{
-    background-color: red;
-    cursor: none !important;
-    opacity: 100%;
-} */
 
 #p1Checker, #p2Checker {
     position: absolute;
@@ -113,6 +92,13 @@ html, body {
 }
 
 
-.board{
+.rotate{
     transform: rotate(180deg);
 }
+
+.pp{
+    position: absolute;
+    z-index: 3;
+}
+
+/* padaryt scalable lenta */
