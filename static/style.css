@@ -96,5 +96,9 @@ html, body {
     transform: rotate(180deg);
 }
 
+.pp{
+    position: absolute;
+    z-index: 3;
+}
 
 /* padaryt scalable lenta */

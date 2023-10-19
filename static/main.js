@@ -12,20 +12,24 @@ function serverReady(){
     console.log("server ready");
     startGame();
     console.log("local player:", localPlayer);
-    if(localPlayer === 2)
+    if(localPlayer === 1)
             document.querySelector(".board").classList.add("rotate");
 }
 
-turn= localPlayer;
+turn= localPlayer+1;
 
 function updateBoard(object){
     let board = object.board; 
     console.log(board);
     console.log("turn:", turn);
     // turn = object.turn;
-    for(let x in allSquares){
+    for(let x in board){
+        allSquares[x].innerHTML += `<p class="pp">${x}</p>` //skaiciukai
+        
+
         // console.log(x, Number.isInteger(Number(x))); //do not change 'Number.isInteger(Number(x))'
-        if(Number.isInteger(Number(x)) && allSquares[x].children[0] !== undefined && allSquares[x].children[0].classList[0] == "checker"){
+        // if(Number.isInteger(Number(x)) && allSquares[x].children[0] !== undefined && allSquares[x].children[0].classList[0] == "checker"){
+            // console.log(board[x], allSquares[x].children[0].classList )
             // if(board[x] == 0){
             //     allSquares[x].children[0].classList.remove("active");
             //     allSquares[x].children[0].classList.remove("one");
@@ -57,7 +61,7 @@ function updateBoard(object){
 
             // }   
             // console.log(board[x], allSquares[x].children[0].classList)
-        }
+        // }
     }
 
 }
