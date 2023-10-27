@@ -8,6 +8,7 @@ let thisPlayer;
 let checkerNum='';
 const allSquares = document.querySelectorAll(".square");
 const allCheckers = document.querySelectorAll(".checker");
+let board;
 
 function serverReady(){
     console.log("server ready");
@@ -23,29 +24,29 @@ function serverReady(){
 turn= localPlayer+1;
 
 function updateBoard(object){
-    let board = object.board; 
+    board = object.board; 
     console.log(board);
     console.log("turn:", turn);
     // turn = object.turn;
     for(let x in board){
         // allSquares[x].innerHTML.remove();
-        allSquares[x].innerHTML += `<p class="pp"></p>`
+        // allSquares[x].innerHTML += `<p class="pp"></p>`
     }
-    document.querySelector(".pp").classList.add("rotatepp");
+    // document.querySelector(".pp").classList.add("rotatepp");
 
     // console.log(allCheckers);
 
-    for(let x in allCheckers){
-        // console.log(allCheckers[x].classList);
-        allCheckers[x].classList.remove("active");
-        allCheckers[x].classList.remove("one");
-        allCheckers[x].classList.remove("two");
-        // console.log(allCheckers[x].classList)
-    }
-
     for(let x in board){
+        // if(board[x] != 0){
+        //     console.log(allSquares[x]);
+        //     allSquares[x].classList.add("orange");
+    // }
+    // allCheckers[x].classList.add("active");
+    // allCheckers[x].classList.add("one");
+    // console.log(allCheckers[x].classList);
+        // allCheckers[x+1].classList.add("orange");
         // allSquares[x].innerHTML.remove();
-        allSquares[x].querySelector(".pp").innerHTML = `${x}, ${board[x]}` //skaiciukai
+        // allSquares[x].querySelector(".pp").innerHTML = `${x}, ${board[x]}` //skaiciukai
         // if(board[x] == 0){
         //         allCheckers[x].classList.remove("active");
         //         allCheckers[x].classList.remove("one");
@@ -100,7 +101,10 @@ register_server_ready(serverReady);
 register_update_board(updateBoard);
 register_update_metadata(updateMetadata)
 
-
+for(let x in board){
+    allCheckers[x].classList.add("active");
+}
+console.log(allCheckers);
 
 
 // for(x in allChecker){
@@ -179,7 +183,7 @@ function twoMouseMove(e){
 }
 
 function startGame(){
-    console.log(allCheckers);
+    // console.log(allCheckers);
 
 document.addEventListener('mousedown', e => {
     isDragging = false;
