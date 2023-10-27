@@ -7,6 +7,7 @@ let available = [];
 let thisPlayer;
 let checkerNum='';
 const allSquares = document.querySelectorAll(".square");
+const allCheckers = document.querySelectorAll(".checker");
 
 function serverReady(){
     console.log("server ready");
@@ -14,6 +15,7 @@ function serverReady(){
     console.log("local player:", localPlayer);
     if(localPlayer === 1){
         document.querySelector(".board").classList.add("rotate");
+        // document.querySelector(".pp").classList.add("rotatepp");
         // document.querySelector(".pp").classList.add("rotate");
     }
 }
@@ -29,11 +31,26 @@ function updateBoard(object){
         // allSquares[x].innerHTML.remove();
         allSquares[x].innerHTML += `<p class="pp"></p>`
     }
+    document.querySelector(".pp").classList.add("rotatepp");
+
+    // console.log(allCheckers);
+
+    for(let x in allCheckers){
+        // console.log(allCheckers[x].classList);
+        allCheckers[x].classList.remove("active");
+        allCheckers[x].classList.remove("one");
+        allCheckers[x].classList.remove("two");
+        // console.log(allCheckers[x].classList)
+    }
 
     for(let x in board){
         // allSquares[x].innerHTML.remove();
         allSquares[x].querySelector(".pp").innerHTML = `${x}, ${board[x]}` //skaiciukai
-
+        // if(board[x] == 0){
+        //         allCheckers[x].classList.remove("active");
+        //         allCheckers[x].classList.remove("one");
+        //         allCheckers[x].classList.remove("two");
+        // }
 
         // console.log(x, Number.isInteger(Number(x))); //do not change 'Number.isInteger(Number(x))'
         // if(Number.isInteger(Number(x)) && allSquares[x].children[0] !== undefined && allSquares[x].children[0].classList[0] == "checker"){
@@ -71,10 +88,6 @@ function updateBoard(object){
             // console.log(board[x], allSquares[x].children[0].classList)
         // }
     }
-    // if(localPlayer === 1){
-    //     document.querySelector(".pp").classList.add("rotatepp");
-    //     console.log(document.querySelector(".pp").classList);
-    // }
 
 }
 
@@ -166,6 +179,8 @@ function twoMouseMove(e){
 }
 
 function startGame(){
+    console.log(allCheckers);
+
 document.addEventListener('mousedown', e => {
     isDragging = false;
     const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);

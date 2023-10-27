@@ -102,6 +102,6 @@ html, body {
 }
 
 .rotatepp{
-    transform: rotate(180deg);
+    transform: rotate(0deg);
 }
 /* padaryt scalable lenta */
