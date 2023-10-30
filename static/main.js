@@ -8,6 +8,14 @@ let thisPlayer;
 let checkerNum='';
 const allSquares = document.querySelectorAll(".square");
 const allCheckers = document.querySelectorAll(".checker");
+const startBoard = [1, 0, 1, 0, 1, 0, 1, 0,
+    0, 1, 0, 1, 0, 1, 0, 1,
+    1, 0, 1, 0, 1, 0, 1, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, -1, 0, -1, 0, -1, 0, -1,
+    -1, 0, -1, 0, -1, 0, -1, 0,
+    0, -1, 0, -1, 0, -1, 0, -1];
 
 function serverReady(){
     console.log("server ready");
@@ -27,24 +35,28 @@ function updateBoard(object){
     console.log(board);
     console.log("turn:", turn);
     // turn = object.turn;
-    for(let x in board){
-        // allSquares[x].innerHTML.remove();
-        allSquares[x].innerHTML += `<p class="pp"></p>`
-    }
-    document.querySelector(".pp").classList.add("rotatepp");
-
-    // console.log(allCheckers);
+    // for(let x in board){
+    //     allSquares[x].innerHTML += `<p class="pp"></p>`
+    // }
+    // document.querySelector(".pp").classList.add("rotatepp");
 
     for(let x in board){
-        if(board[x] != 0){
-            // console.log(allSquares[x]);
-            // allSquares[x].classList.add("orange");
-            console.log(x+1, document.querySelector(`.checker${Number(x)+1}`).classList);
-            document.querySelector(`.checker${Number(x)+1}`).classList.add('orange');
-            document.querySelector(`.checker${Number(x)+1}`).classList.add('active');
+        if(startBoard[x] != 0){
+            let thisChecker = document.querySelector(`.checker${Number(x)+1}`);
+            // thisChecker.classList.remove('active');
+            // thisChecker.classList.remove('two');
+            // thisChecker.classList.remove('one');
+            if(board[x] == 1){
+                thisChecker.classList.add('active');
+                thisChecker.classList.add('one');
+            }
+            if(board[x] == -1){
+                thisChecker.classList.add('active');
+                thisChecker.classList.add('two');
+            }
         }
-    
     }
+    // console.log(allCheckers);
 
 }
 
@@ -104,7 +116,7 @@ function oneMouseDown(elementUnderMouse, e){
     elementUnderMouse.classList.remove("active");
     elementUnderMouse.classList.remove("one");
     isDragging = true;
-    document.querySelector(".container").innerHTML += `<div id="p1Checker"></div>`;
+    document.querySelector(".container" ).innerHTML += `<div id="p1Checker"></div>`;
     const p1Checker = document.querySelector("#p1Checker");
     p1Checker.style.top = `${e.clientY - 35}px`;
     p1Checker.style.left = `${e.clientX - 35}px`;
@@ -193,12 +205,12 @@ document.addEventListener('mouseup', e => {
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add(`${thisPlayer}`); 
     }
         //tarkim geras naujas kodas ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    for(let x in available){
-        const removing = document.querySelectorAll(".orange");
-        for(let h in removing){
-            removing[h].classList.remove("orange");
-        }
-    }
+    // for(let x in available){
+    //     const removing = document.querySelectorAll(".orange");
+    //     for(let h in removing){
+    //         removing[h].classList.remove("orange");
+    //     }
+    // }
     // else if(elementUnderMouse === null || invalid.some(element => includes.includes(element))){
     //     document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
     // }
