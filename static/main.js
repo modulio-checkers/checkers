@@ -8,7 +8,6 @@ let thisPlayer;
 let checkerNum='';
 const allSquares = document.querySelectorAll(".square");
 const allCheckers = document.querySelectorAll(".checker");
-let board;
 
 function serverReady(){
     console.log("server ready");
@@ -24,70 +23,27 @@ function serverReady(){
 turn= localPlayer+1;
 
 function updateBoard(object){
-    board = object.board; 
+    let board = object.board; 
     console.log(board);
     console.log("turn:", turn);
     // turn = object.turn;
     for(let x in board){
         // allSquares[x].innerHTML.remove();
-        // allSquares[x].innerHTML += `<p class="pp"></p>`
+        allSquares[x].innerHTML += `<p class="pp"></p>`
     }
-    // document.querySelector(".pp").classList.add("rotatepp");
+    document.querySelector(".pp").classList.add("rotatepp");
 
     // console.log(allCheckers);
 
     for(let x in board){
-        // if(board[x] != 0){
-        //     console.log(allSquares[x]);
-        //     allSquares[x].classList.add("orange");
-    // }
-    // allCheckers[x].classList.add("active");
-    // allCheckers[x].classList.add("one");
-    // console.log(allCheckers[x].classList);
-        // allCheckers[x+1].classList.add("orange");
-        // allSquares[x].innerHTML.remove();
-        // allSquares[x].querySelector(".pp").innerHTML = `${x}, ${board[x]}` //skaiciukai
-        // if(board[x] == 0){
-        //         allCheckers[x].classList.remove("active");
-        //         allCheckers[x].classList.remove("one");
-        //         allCheckers[x].classList.remove("two");
-        // }
-
-        // console.log(x, Number.isInteger(Number(x))); //do not change 'Number.isInteger(Number(x))'
-        // if(Number.isInteger(Number(x)) && allSquares[x].children[0] !== undefined && allSquares[x].children[0].classList[0] == "checker"){
-            // console.log(board[x], allSquares[x].children[0].classList )
-            // if(board[x] == 0){
-            //     allSquares[x].children[0].classList.remove("active");
-            //     allSquares[x].children[0].classList.remove("one");
-            //     allSquares[x].children[0].classList.remove("two");
-            // }
-            // else{
-            //     allSquares[x].children[0].classList.add("one");
-            // }
-            // console.log(board[x]);
-            // if(board[x]==1){
-            // allSquares[x].children[0].classList.add("one");
-            // allSquares[x].children[0].classList.add("active");
-            // }
-
-            // else if(board[x]===1){   
-            //       allSquares[x].children[0].classList.add("active"); //neveiks
-            //     allSquares[x].children[0].classList.add("one"); //neveiks
-            //     allSquares[x].children[0].classList.remove("two");
-            // }
-            // else if(board[x]===2){
-
-            // }
-            // else if(board[x]===-1){
-            //     allSquares[x].children[0].classList.add("active"); //neveiks
-            //     allSquares[x].children[0].classList.remove("one");
-            //     allSquares[x].children[0].classList.add("two"); //neveiks
-            // }
-            // else if(board[x]===-2){
-
-            // }   
-            // console.log(board[x], allSquares[x].children[0].classList)
-        // }
+        if(board[x] != 0){
+            // console.log(allSquares[x]);
+            // allSquares[x].classList.add("orange");
+            console.log(x+1, document.querySelector(`.checker${Number(x)+1}`).classList);
+            document.querySelector(`.checker${Number(x)+1}`).classList.add('orange');
+            document.querySelector(`.checker${Number(x)+1}`).classList.add('active');
+        }
+    
     }
 
 }
@@ -101,10 +57,7 @@ register_server_ready(serverReady);
 register_update_board(updateBoard);
 register_update_metadata(updateMetadata)
 
-for(let x in board){
-    allCheckers[x].classList.add("active");
-}
-console.log(allCheckers);
+
 
 
 // for(x in allChecker){
