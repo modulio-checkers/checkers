@@ -80,7 +80,7 @@ html, body {
 }
 
 .orange{
-    background-color: orange;
+    background-color: var(--black);
 }
 
 #p1Checker{

@@ -8,14 +8,15 @@ let thisPlayer;
 let checkerNum='';
 const allSquares = document.querySelectorAll(".square");
 const allCheckers = document.querySelectorAll(".checker");
-const startBoard = [1, 0, 1, 0, 1, 0, 1, 0,
-    0, 1, 0, 1, 0, 1, 0, 1,
-    1, 0, 1, 0, 1, 0, 1, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, -1, 0, -1, 0, -1, 0, -1,
-    -1, 0, -1, 0, -1, 0, -1, 0,
-    0, -1, 0, -1, 0, -1, 0, -1];
+// const startBoard = [1, 0, 1, 0, 1, 0, 1, 0,
+//     0, 1, 0, 1, 0, 1, 0, 1,
+//     1, 0, 1, 0, 1, 0, 1, 0,
+//     0, 0, 0, 0, 0, 0, 0, 0,
+//     0, 0, 0, 0, 0, 0, 0, 0,
+//     0, -1, 0, -1, 0, -1, 0, -1,
+//     -1, 0, -1, 0, -1, 0, -1, 0,
+//     0, -1, 0, -1, 0, -1, 0, -1];
+let blackSquares = [0, 2, 4, 6, 9, 11, 13, 15, 16, 18, 20, 22, 25, 27, 29, 31, 32, 34, 36, 38, 41, 43, 45, 47, 48, 50, 52, 54, 57, 59, 61, 63];
 
 function serverReady(){
     console.log("server ready");
@@ -34,30 +35,29 @@ function updateBoard(object){
     let board = object.board; 
     console.log(board);
     console.log("turn:", turn);
-    // turn = object.turn;
-    // for(let x in board){
-    //     allSquares[x].innerHTML += `<p class="pp"></p>`
-    // }
-    // document.querySelector(".pp").classList.add("rotatepp");
 
     for(let x in board){
-        if(startBoard[x] != 0){
-            let thisChecker = document.querySelector(`.checker${Number(x)+1}`);
-            // thisChecker.classList.remove('active');
-            // thisChecker.classList.remove('two');
-            // thisChecker.classList.remove('one');
-            if(board[x] == 1){
-                thisChecker.classList.add('active');
-                thisChecker.classList.add('one');
-            }
-            if(board[x] == -1){
-                thisChecker.classList.add('active');
-                thisChecker.classList.add('two');
-            }
+        // if(allSquares[x].classList[2] == 'black')
+        //     blackSquares.push(Number(x));
+        console.log(blackSquares.includes(x));
+    if(blackSquares.includes(Number(x))){
+        let thisChecker = document.querySelector(`.checker${Number(x)+1}`);
+        // console.log(board[x], thisChecker);
+        thisChecker.classList.remove('active');
+        thisChecker.classList.remove('two');
+        thisChecker.classList.remove('one');
+        if(board[x] == 1){
+            thisChecker.classList.add('active');
+            thisChecker.classList.add('one');
         }
+        if(board[x] == -1){
+            thisChecker.classList.add('active');
+            thisChecker.classList.add('two');
+        }
+        
     }
-    // console.log(allCheckers);
-
+    }
+    // console.log(blackSquares);
 }
 
 function updateMetadata(){
@@ -68,9 +68,6 @@ function updateMetadata(){
 register_server_ready(serverReady);
 register_update_board(updateBoard);
 register_update_metadata(updateMetadata)
-
-
-
 
 // for(x in allChecker){
 // }
@@ -196,7 +193,7 @@ document.addEventListener('mouseup', e => {
     else if(includes.includes(valid[0]) && includes.includes(valid[1]) && !elementUnderMouse.children[0].classList.value.includes("active")){
         elementUnderMouse.children[0].classList.add("active");
         elementUnderMouse.children[0].classList.add(`${thisPlayer}`);
-        turn++;
+        turn+=2;
         move(checkerNum-1, elementUnderMouse.children[0].dataset.checker-1)
         console.log(checkerNum-1, elementUnderMouse.children[0].dataset.checker-1);
     }
