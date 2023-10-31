@@ -15,10 +15,18 @@ const valid = ["black", "orange"];
 let available = [];
 let thisPlayer;
 let checkerNum = "";
-let blackSquares = [
+const blackSquares = [
   0, 2, 4, 6, 9, 11, 13, 15, 16, 18, 20, 22, 25, 27, 29, 31, 32, 34, 36, 38, 41,
   43, 45, 47, 48, 50, 52, 54, 57, 59, 61, 63,
 ];
+let boardBefore = [1, 0, 1, 0, 1, 0, 1, 0,
+    0, 1, 0, 1, 0, 1, 0, 1,
+    1, 0, 1, 0, 1, 0, 1, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, -1, 0, -1, 0, -1, 0, -1,
+    -1, 0, -1, 0, -1, 0, -1, 0,
+    0, -1, 0, -1, 0, -1, 0, -1];
 
 function serverReady() {
   console.log("server ready");
@@ -36,7 +44,9 @@ turn = localPlayer + 1;
 function updateBoard(object) {
   let board = object.board;
   console.log(board);
-  console.log("turn:", turn);
+  if(boardBefore != board)
+    turn+=2;
+console.log("turn:", turn);
 
   for (let x in board) {
     if (blackSquares.includes(Number(x))) {
@@ -54,6 +64,7 @@ function updateBoard(object) {
       }
     }
   }
+  boardBefore = board;
 }
 
 function updateMetadata() {}
@@ -172,40 +183,33 @@ function startGame() {
     } else if (thisPlayer == "two") {
       document.querySelector("#p2Checker").remove();
     }
-    let elementUnderMouse = "";
-    elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
-    let includes;
-    if (elementUnderMouse !== null) {
-      includes = elementUnderMouse.classList.value;
-    }
-    if (elementUnderMouse === null) {
-      document
-        .querySelector(`.${currentChecker.classList[1]}`)
-        .classList.add(`${thisPlayer}`);
-      document
-        .querySelector(`.${currentChecker.classList[1]}`)
-        .classList.add("active");
-    } else if (
-      includes.includes(valid[0]) &&
-      includes.includes(valid[1]) &&
-      !elementUnderMouse.children[0].classList.value.includes("active")
-    ) {
-      elementUnderMouse.children[0].classList.add("active");
-      elementUnderMouse.children[0].classList.add(`${thisPlayer}`);
-      turn += 2;
-      move(checkerNum - 1, elementUnderMouse.children[0].dataset.checker - 1);
-    //   console.log(
-    //     checkerNum - 1,
-    //     elementUnderMouse.children[0].dataset.checker - 1
-    //   );
-    } else {
-      document
-        .querySelector(`.${currentChecker.classList[1]}`)
-        .classList.add("active");
-      document
-        .querySelector(`.${currentChecker.classList[1]}`)
-        .classList.add(`${thisPlayer}`);
-    }
+    move(checkerNum - 1, document.elementFromPoint(e.clientX, e.clientY).children[0].dataset.checker - 1);
+    // let elementUnderMouse = "";
+    // elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
+    // let includes;
+    // if (elementUnderMouse !== null) {
+    //   includes = elementUnderMouse.classList.value;
+    // }
+    // if (elementUnderMouse === null) {
+    //   document.querySelector(`.${currentChecker.classList[1]}`).classList.add(`${thisPlayer}`);
+    //   document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active");
+    // } else if (
+    //   includes.includes(valid[0]) &&
+    //   includes.includes(valid[1]) &&
+    //   !elementUnderMouse.children[0].classList.value.includes("active")
+    // ) {
+    //   elementUnderMouse.children[0].classList.add("active");
+    //   elementUnderMouse.children[0].classList.add(`${thisPlayer}`);
+    // //   turn += 2;
+    // }
+    //  else {
+    //   document
+    //     .querySelector(`.${currentChecker.classList[1]}`)
+    //     .classList.add("active");
+    //   document
+    //     .querySelector(`.${currentChecker.classList[1]}`)
+    //     .classList.add(`${thisPlayer}`);
+    // }
     //tarkim geras naujas kodas ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     // for(let x in available){
     //     const removing = document.querySelectorAll(".orange");
@@ -222,5 +226,4 @@ function startGame() {
   });
 }
 //aptvarkyti mouseup funkcija
-//move validation and update board
-//padaryt kad apsiverstu lenta
+//move validation
