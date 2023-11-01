@@ -11,7 +11,7 @@ const invalid = [
   "timer2",
   "player2",
 ];
-const valid = ["black", "orange"];
+const valid = "black";
 let available = [];
 let thisPlayer;
 let checkerNum = "";
@@ -62,6 +62,14 @@ console.log("turn:", turn);
         thisChecker.classList.add("active");
         thisChecker.classList.add("two");
       }
+    //   if (board[x] == 2) {
+    //     thisChecker.classList.add("active");
+    //     thisChecker.classList.add("onequeen");
+    //   }
+    //   if (board[x] == -2) {
+    //     thisChecker.classList.add("active");
+    //     thisChecker.classList.add("twoqueen");
+    //   }
     }
   }
   boardBefore = board;
@@ -111,10 +119,10 @@ function availableNumbers(checkerNum) {
 function oneMouseDown(elementUnderMouse, e) {
   thisPlayer = "one";
   checkerNum = Number(currentChecker.dataset.checker);
-  availableNumbers(checkerNum);
-  for (let x in available) {
-    available[x].classList.add("orange");
-  }
+//   availableNumbers(checkerNum);
+//   for (let x in available) {
+//     available[x].classList.add("orange");
+//   }
   elementUnderMouse.classList.remove("active");
   elementUnderMouse.classList.remove("one");
   isDragging = true;
@@ -128,10 +136,10 @@ function oneMouseDown(elementUnderMouse, e) {
 function twoMouseDown(elementUnderMouse, e) {
   thisPlayer = "two";
   checkerNum = Number(currentChecker.dataset.checker);
-  availableNumbers(checkerNum);
-  for (let x in available) {
-    available[x].classList.add("orange");
-  }
+//   availableNumbers(checkerNum);
+//   for (let x in available) {
+//     available[x].classList.add("orange");
+//   }
   elementUnderMouse.classList.remove("active");
   elementUnderMouse.classList.remove("two");
   isDragging = true;
@@ -183,47 +191,28 @@ function startGame() {
     } else if (thisPlayer == "two") {
       document.querySelector("#p2Checker").remove();
     }
-    move(checkerNum - 1, document.elementFromPoint(e.clientX, e.clientY).children[0].dataset.checker - 1);
-    // let elementUnderMouse = "";
-    // elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
-    // let includes;
-    // if (elementUnderMouse !== null) {
-    //   includes = elementUnderMouse.classList.value;
-    // }
-    // if (elementUnderMouse === null) {
-    //   document.querySelector(`.${currentChecker.classList[1]}`).classList.add(`${thisPlayer}`);
-    //   document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active");
-    // } else if (
-    //   includes.includes(valid[0]) &&
-    //   includes.includes(valid[1]) &&
-    //   !elementUnderMouse.children[0].classList.value.includes("active")
-    // ) {
-    //   elementUnderMouse.children[0].classList.add("active");
-    //   elementUnderMouse.children[0].classList.add(`${thisPlayer}`);
-    // //   turn += 2;
-    // }
-    //  else {
-    //   document
-    //     .querySelector(`.${currentChecker.classList[1]}`)
-    //     .classList.add("active");
-    //   document
-    //     .querySelector(`.${currentChecker.classList[1]}`)
-    //     .classList.add(`${thisPlayer}`);
-    // }
-    //tarkim geras naujas kodas ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    // for(let x in available){
-    //     const removing = document.querySelectorAll(".orange");
-    //     for(let h in removing){
-    //         removing[h].classList.remove("orange");
-    //     }
-    // }
-    // else if(elementUnderMouse === null || invalid.some(element => includes.includes(element))){
-    //     document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active"); ///important, do not change
-    // }
-    //senas geras kodas ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    // document.querySelector(`.${available[x].classList[available.length-1]}`).classList.remove("orange");
-    //kinda veikiantis kodas^^^^
+    // if(document.elementFromPoint(e.clientX, e.clientY).classList.value.includes("square"))
+    let elementUnderMouse = "";
+    elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
+    let includes;
+    console.log(elementUnderMouse);
+    if (elementUnderMouse !== null) {
+      includes = elementUnderMouse.classList.value;
+    }
+    // console.log(includes, includes.includes(valid));
+    if(elementUnderMouse === null){
+        document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active");
+        document.querySelector(`.${currentChecker.classList[1]}`).classList.add(`${thisPlayer}`);
+        // updateBoard(object);
+    }
+    else if(includes.includes(valid)){
+        // turn += 2;
+        move(checkerNum - 1, elementUnderMouse.children[0].dataset.checker - 1);
+
+    }
+    else{
+        document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active");
+        document.querySelector(`.${currentChecker.classList[1]}`).classList.add(`${thisPlayer}`);
+    }
   });
 }
-//aptvarkyti mouseup funkcija
-//move validation
