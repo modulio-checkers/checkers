@@ -24,6 +24,7 @@ html, body {
     display: grid;
     grid-template-columns: repeat(8, 81.25px);
     grid-template-rows: repeat(8, 81.25px);
+    background-color: var(--white);
 }
 .square {
     border: 2px solid black;

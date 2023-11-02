@@ -12,21 +12,24 @@ const invalid = [
   "player2",
 ];
 const valid = "black";
-let available = [];
+// let available = [];
 let thisPlayer;
 let checkerNum = "";
 const blackSquares = [
   0, 2, 4, 6, 9, 11, 13, 15, 16, 18, 20, 22, 25, 27, 29, 31, 32, 34, 36, 38, 41,
   43, 45, 47, 48, 50, 52, 54, 57, 59, 61, 63,
 ];
-let boardBefore = [1, 0, 1, 0, 1, 0, 1, 0,
+let boardBefore = [
+    1, 0, 1, 0, 1, 0, 1, 0,
     0, 1, 0, 1, 0, 1, 0, 1,
     1, 0, 1, 0, 1, 0, 1, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, -1, 0, -1, 0, -1, 0, -1,
     -1, 0, -1, 0, -1, 0, -1, 0,
-    0, -1, 0, -1, 0, -1, 0, -1];
+    0, -1, 0, -1, 0, -1, 0, -1
+];
+let turnHere;
 
 function serverReady() {
   console.log("server ready");
@@ -39,14 +42,15 @@ function serverReady() {
   }
 }
 
-turn = localPlayer + 1;
+// turn = localPlayer + 1;
 
 function updateBoard(object) {
   let board = object.board;
+  turnHere = object.turn;
   console.log(board);
-  if(boardBefore != board)
-    turn+=2;
-console.log("turn:", turn);
+//   if(boardBefore != board)
+//     turn+=2;
+console.log("turn:", object.turn);
 
   for (let x in board) {
     if (blackSquares.includes(Number(x))) {
@@ -72,7 +76,7 @@ console.log("turn:", turn);
     //   }
     }
   }
-  boardBefore = board;
+//   boardBefore = board;
 }
 
 function updateMetadata() {}
@@ -81,40 +85,40 @@ register_server_ready(serverReady);
 register_update_board(updateBoard);
 register_update_metadata(updateMetadata);
 
-function availableNumbers(checkerNum) {
-  if (checkerNum == 1) {
-    available = [document.querySelector(".square10")];
-  } else if (checkerNum == 64) {
-    available = [document.querySelector(".square55")];
-  } else if (checkerNum == 3 || checkerNum == 5 || checkerNum == 7) {
-    available = [
-      document.querySelector(".square" + (checkerNum + 7)),
-      document.querySelector(".square" + (checkerNum + 9)),
-    ];
-  } else if (checkerNum == 58 || checkerNum == 60 || checkerNum == 62) {
-    available = [
-      document.querySelector(".square" + (checkerNum - 7)),
-      document.querySelector(".square" + (checkerNum - 9)),
-    ];
-  } else if (checkerNum == 16 || checkerNum == 32 || checkerNum == 48) {
-    available = [
-      document.querySelector(".square" + (checkerNum - 9)),
-      document.querySelector(".square" + (checkerNum + 7)),
-    ];
-  } else if (checkerNum == 17 || checkerNum == 33 || checkerNum == 49) {
-    available = [
-      document.querySelector(".square" + (checkerNum - 7)),
-      document.querySelector(".square" + (checkerNum + 9)),
-    ];
-  } else {
-    available = [
-      document.querySelector(".square" + (checkerNum - 9)),
-      document.querySelector(".square" + (checkerNum - 7)),
-      document.querySelector(".square" + (checkerNum + 7)),
-      document.querySelector(".square" + (checkerNum + 9)),
-    ];
-  }
-}
+// function availableNumbers(checkerNum) {
+//   if (checkerNum == 1) {
+//     available = [document.querySelector(".square10")];
+//   } else if (checkerNum == 64) {
+//     available = [document.querySelector(".square55")];
+//   } else if (checkerNum == 3 || checkerNum == 5 || checkerNum == 7) {
+//     available = [
+//       document.querySelector(".square" + (checkerNum + 7)),
+//       document.querySelector(".square" + (checkerNum + 9)),
+//     ];
+//   } else if (checkerNum == 58 || checkerNum == 60 || checkerNum == 62) {
+//     available = [
+//       document.querySelector(".square" + (checkerNum - 7)),
+//       document.querySelector(".square" + (checkerNum - 9)),
+//     ];
+//   } else if (checkerNum == 16 || checkerNum == 32 || checkerNum == 48) {
+//     available = [
+//       document.querySelector(".square" + (checkerNum - 9)),
+//       document.querySelector(".square" + (checkerNum + 7)),
+//     ];
+//   } else if (checkerNum == 17 || checkerNum == 33 || checkerNum == 49) {
+//     available = [
+//       document.querySelector(".square" + (checkerNum - 7)),
+//       document.querySelector(".square" + (checkerNum + 9)),
+//     ];
+//   } else {
+//     available = [
+//       document.querySelector(".square" + (checkerNum - 9)),
+//       document.querySelector(".square" + (checkerNum - 7)),
+//       document.querySelector(".square" + (checkerNum + 7)),
+//       document.querySelector(".square" + (checkerNum + 9)),
+//     ];
+//   }
+// }
 //pakeist, kad veiktu su grid system
 function oneMouseDown(elementUnderMouse, e) {
   thisPlayer = "one";
@@ -167,19 +171,23 @@ function startGame() {
     const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
     currentChecker = elementUnderMouse;
     if (elementUnderMouse.className.includes("active")) {
-      available.length = 0;
-      if (turn % 2 == 0 && elementUnderMouse.className.includes("one")) {
+    //   available.length = 0;
+    console.log(localPlayer, turnHere, elementUnderMouse.className.includes("one"), elementUnderMouse.className.includes("two"))
+      if (localPlayer == 1 && turnHere == 1 && elementUnderMouse.className.includes("one")) {
+        console.log("this");
+
         oneMouseDown(elementUnderMouse, e);
-      } else if (turn % 2 == 1 && elementUnderMouse.className.includes("two")) {
+      } else if (localPlayer == 2 && turnHere == 2 && elementUnderMouse.className.includes("two")) {
+        console.log("this");
         twoMouseDown(elementUnderMouse, e);
       }
     }
   });
   document.addEventListener("mousemove", (e) => {
     if (isDragging) {
-      if (turn % 2 == 0 && thisPlayer == "one") {
+      if (localPlayer == 1 && turnHere == 1 && thisPlayer == "one") {
         oneMouseMove(e);
-      } else if (turn % 2 == 1 && thisPlayer == "two") {
+      } else if (localPlayer == 2 && turnHere == 2 && thisPlayer == "two") {
         twoMouseMove(e);
       }
     }
@@ -191,6 +199,9 @@ function startGame() {
     } else if (thisPlayer == "two") {
       document.querySelector("#p2Checker").remove();
     }
+    else{
+        return;
+    }
     // if(document.elementFromPoint(e.clientX, e.clientY).classList.value.includes("square"))
     let elementUnderMouse = "";
     elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
@@ -199,11 +210,9 @@ function startGame() {
     if (elementUnderMouse !== null) {
       includes = elementUnderMouse.classList.value;
     }
-    // console.log(includes, includes.includes(valid));
     if(elementUnderMouse === null){
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add("active");
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add(`${thisPlayer}`);
-        // updateBoard(object);
     }
     else if(includes.includes(valid)){
         // turn += 2;
@@ -216,3 +225,4 @@ function startGame() {
     }
   });
 }
+//prideti queens
