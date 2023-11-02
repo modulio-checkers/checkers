@@ -1,16 +1,5 @@
 let isDragging = false;
 let currentChecker = "";
-const invalid = [
-  "white",
-  "container",
-  "active",
-  "player1-info",
-  "player2-info",
-  "timer1",
-  "player1",
-  "timer2",
-  "player2",
-];
 const valid = "black";
 let thisPlayer;
 let checkerNum = "";
@@ -32,9 +21,7 @@ let turnHere;
 let isQueen;
 
 function serverReady() {
-//   console.log("server ready");
   startGame();
-//   console.log("local player:", localPlayer);
   if (localPlayer === 1) 
     document.querySelector(".board").classList.add("rotate");
 }
@@ -43,9 +30,6 @@ function serverReady() {
 function updateBoard(object) {
   let board = object.board;
   turnHere = object.turn;
-//   console.log(board);
-// console.log("turn:", object.turn);
-
   for (let x in board) {
     if (blackSquares.includes(Number(x))) {
       let thisChecker = document.querySelector(`.checker${Number(x) + 1}`);
