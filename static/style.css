@@ -64,11 +64,14 @@ html, body {
 
 .one{
     background-color: var(--red) !important;
+    border: 3px solid black;
+
 }
 
 
 .two{
     background-color: var(--blue);
+    border: 3px solid black;
 } 
 
 #p1Checker, #p2Checker {
@@ -106,3 +109,7 @@ html, body {
     transform: rotate(0deg);
 }
 /* padaryt scalable lenta */
+
+.queen{
+    filter: brightness(50%);
+}

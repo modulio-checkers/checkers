@@ -30,6 +30,7 @@ let boardBefore = [
     0, -1, 0, -1, 0, -1, 0, -1
 ];
 let turnHere;
+let isQueen;
 
 function serverReady() {
   console.log("server ready");
@@ -66,14 +67,16 @@ console.log("turn:", object.turn);
         thisChecker.classList.add("active");
         thisChecker.classList.add("two");
       }
-    //   if (board[x] == 2) {
-    //     thisChecker.classList.add("active");
-    //     thisChecker.classList.add("onequeen");
-    //   }
-    //   if (board[x] == -2) {
-    //     thisChecker.classList.add("active");
-    //     thisChecker.classList.add("twoqueen");
-    //   }
+      if (board[x] == 2) {
+        thisChecker.classList.add("active");
+        thisChecker.classList.add("one");
+        thisChecker.classList.add("queen");
+      }
+      if (board[x] == -2) {
+        thisChecker.classList.add("active");
+        thisChecker.classList.add("two");
+        thisChecker.classList.add("queen");
+      }
     }
   }
 //   boardBefore = board;
@@ -129,11 +132,13 @@ function oneMouseDown(elementUnderMouse, e) {
 //   }
   elementUnderMouse.classList.remove("active");
   elementUnderMouse.classList.remove("one");
+  elementUnderMouse.classList.remove("queen");
   isDragging = true;
   document.querySelector(
     ".container"
   ).innerHTML += `<div id="p1Checker"></div>`;
   const p1Checker = document.querySelector("#p1Checker");
+  if(isQueen) p1Checker.style.filter = "brightness(50%)"
   p1Checker.style.top = `${e.clientY - 35}px`;
   p1Checker.style.left = `${e.clientX - 35}px`;
 }
@@ -146,11 +151,13 @@ function twoMouseDown(elementUnderMouse, e) {
 //   }
   elementUnderMouse.classList.remove("active");
   elementUnderMouse.classList.remove("two");
+  elementUnderMouse.classList.remove("queen");
   isDragging = true;
   document.querySelector(
     ".container"
   ).innerHTML += `<div id="p2Checker"></div>`;
   const p2Checker = document.querySelector("#p2Checker");
+  if(isQueen) p2Checker.style.filter = "brightness(50%)"
   p2Checker.style.top = `${e.clientY - 35}px`;
   p2Checker.style.left = `${e.clientX - 35}px`;
 }
@@ -172,6 +179,8 @@ function startGame() {
     currentChecker = elementUnderMouse;
     if (elementUnderMouse.className.includes("active")) {
     //   available.length = 0;
+    if(elementUnderMouse.className.includes("queen")) isQueen = true;
+    else isQueen = false
     console.log(localPlayer, turnHere, elementUnderMouse.className.includes("one"), elementUnderMouse.className.includes("two"))
       if (localPlayer == 1 && turnHere == 1 && elementUnderMouse.className.includes("one")) {
         console.log("this");
