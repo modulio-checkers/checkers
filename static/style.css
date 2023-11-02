@@ -3,6 +3,7 @@
     --blue: blue;
     --white: rgb(190, 190, 190);
     --black: rgb(37, 37, 37);
+    --board: 75vh;
 }
 
 html, body {
@@ -14,16 +15,17 @@ html, body {
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: auto 650px auto;
-    grid-template-rows: auto auto 650px auto auto;
+    grid-template-columns: auto var(--board) auto;
+    grid-template-rows: auto auto var(--board) auto auto;
 }
 .board {
     grid-row: 3/4;
     grid-column: 2/3;
     border: 2px solid black;
     display: grid;
-    grid-template-columns: repeat(8, 81.25px);
-    grid-template-rows: repeat(8, 81.25px);
+    grid-template-columns: repeat(8, calc(var(--board)/8));
+    grid-template-rows: repeat(8, calc(var(--board)/8));
+    background-color: var(--white);
 }
 .square {
     border: 2px solid black;
@@ -33,7 +35,6 @@ html, body {
 }
 
 .black {
-    background-color: rgb(37, 37, 37);
     background-color: var(--black);
 }
 
@@ -56,52 +57,29 @@ html, body {
     margin: auto 10%
 }
 .active{
-    height: 70px;
-    width: 70px;
+    height: calc(var(--board)/8*0.85);
+    width: calc(var(--board)/8*0.85);
     border-radius: 100px;
-    /* background-color: red; comment */
-    /* background-color: red; comment */
-    border: 3px solid black;
 }
 
 .one{
-    /* background-color: red !important; */
     background-color: var(--red) !important;
-}
+    border: 3px solid black;
 
+}
 
 .two{
-    /* background-color: blue !important; */
     background-color: var(--blue);
+    border: 3px solid black;
 } 
-
-/* .player{
-    position: absolute;
-    height: 70px;
-    width: 70px;
-    border-radius: 100px;
-    background-color: white;
-    top: 0px;
-    left: 0px;
-    opacity: 0%;
-}
-.player.pActive{
-    background-color: red;
-    cursor: none !important;
-    opacity: 100%;
-} */
 
 #p1Checker, #p2Checker {
     position: absolute;
-    height: 70px;
-    width: 70px;
+    height: calc(var(--board)/8*0.85);
+    width: calc(var(--board)/8*0.85);
     border-radius: 100px;
     background-color: white;
     border: 3px solid black;
-}
-
-.orange{
-    background-color: orange;
 }
 
 #p1Checker{
@@ -113,6 +91,10 @@ html, body {
 }
 
 
-.board{
+.rotate{
     transform: rotate(180deg);
+}
+
+.queen{
+    filter: brightness(50%) !important;
 }
