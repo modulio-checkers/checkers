@@ -3,6 +3,7 @@
     --blue: blue;
     --white: rgb(190, 190, 190);
     --black: rgb(37, 37, 37);
+    --board: 75vh;
 }
 
 html, body {
@@ -14,16 +15,16 @@ html, body {
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: auto 650px auto;
-    grid-template-rows: auto auto 650px auto auto;
+    grid-template-columns: auto var(--board) auto;
+    grid-template-rows: auto auto var(--board) auto auto;
 }
 .board {
     grid-row: 3/4;
     grid-column: 2/3;
     border: 2px solid black;
     display: grid;
-    grid-template-columns: repeat(8, 81.25px);
-    grid-template-rows: repeat(8, 81.25px);
+    grid-template-columns: repeat(8, calc(var(--board)/8));
+    grid-template-rows: repeat(8, calc(var(--board)/8));
     background-color: var(--white);
 }
 .square {
@@ -56,10 +57,9 @@ html, body {
     margin: auto 10%
 }
 .active{
-    height: 70px;
-    width: 70px;
+    height: calc(var(--board)/8*0.85);
+    width: calc(var(--board)/8*0.85);
     border-radius: 100px;
-    /* border: 3px solid black; */
 }
 
 .one{
@@ -68,7 +68,6 @@ html, body {
 
 }
 
-
 .two{
     background-color: var(--blue);
     border: 3px solid black;
@@ -76,8 +75,8 @@ html, body {
 
 #p1Checker, #p2Checker {
     position: absolute;
-    height: 70px;
-    width: 70px;
+    height: calc(var(--board)/8*0.85);
+    width: calc(var(--board)/8*0.85);
     border-radius: 100px;
     background-color: white;
     border: 3px solid black;
@@ -96,8 +95,6 @@ html, body {
     transform: rotate(180deg);
 }
 
-/* padaryt scalable lenta */
-
 .queen{
-    filter: brightness(50%);
+    filter: brightness(50%) !important;
 }
