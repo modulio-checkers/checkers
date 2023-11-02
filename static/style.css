@@ -83,10 +83,6 @@ html, body {
     border: 3px solid black;
 }
 
-.orange{
-    background-color: var(--black);
-}
-
 #p1Checker{
     background-color: var(--red);
 }
@@ -100,14 +96,6 @@ html, body {
     transform: rotate(180deg);
 }
 
-.pp{
-    position: absolute;
-    z-index: 3;
-}
-
-.rotatepp{
-    transform: rotate(0deg);
-}
 /* padaryt scalable lenta */
 
 .queen{

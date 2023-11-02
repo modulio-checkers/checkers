@@ -12,7 +12,6 @@ const invalid = [
   "player2",
 ];
 const valid = "black";
-// let available = [];
 let thisPlayer;
 let checkerNum = "";
 const blackSquares = [
@@ -33,25 +32,19 @@ let turnHere;
 let isQueen;
 
 function serverReady() {
-  console.log("server ready");
+//   console.log("server ready");
   startGame();
-  console.log("local player:", localPlayer);
-  if (localPlayer === 1) {
+//   console.log("local player:", localPlayer);
+  if (localPlayer === 1) 
     document.querySelector(".board").classList.add("rotate");
-    // document.querySelector(".pp").classList.add("rotatepp");
-    // document.querySelector(".pp").classList.add("rotate");
-  }
 }
 
-// turn = localPlayer + 1;
 
 function updateBoard(object) {
   let board = object.board;
   turnHere = object.turn;
-  console.log(board);
-//   if(boardBefore != board)
-//     turn+=2;
-console.log("turn:", object.turn);
+//   console.log(board);
+// console.log("turn:", object.turn);
 
   for (let x in board) {
     if (blackSquares.includes(Number(x))) {
@@ -79,7 +72,6 @@ console.log("turn:", object.turn);
       }
     }
   }
-//   boardBefore = board;
 }
 
 function updateMetadata() {}
@@ -88,48 +80,9 @@ register_server_ready(serverReady);
 register_update_board(updateBoard);
 register_update_metadata(updateMetadata);
 
-// function availableNumbers(checkerNum) {
-//   if (checkerNum == 1) {
-//     available = [document.querySelector(".square10")];
-//   } else if (checkerNum == 64) {
-//     available = [document.querySelector(".square55")];
-//   } else if (checkerNum == 3 || checkerNum == 5 || checkerNum == 7) {
-//     available = [
-//       document.querySelector(".square" + (checkerNum + 7)),
-//       document.querySelector(".square" + (checkerNum + 9)),
-//     ];
-//   } else if (checkerNum == 58 || checkerNum == 60 || checkerNum == 62) {
-//     available = [
-//       document.querySelector(".square" + (checkerNum - 7)),
-//       document.querySelector(".square" + (checkerNum - 9)),
-//     ];
-//   } else if (checkerNum == 16 || checkerNum == 32 || checkerNum == 48) {
-//     available = [
-//       document.querySelector(".square" + (checkerNum - 9)),
-//       document.querySelector(".square" + (checkerNum + 7)),
-//     ];
-//   } else if (checkerNum == 17 || checkerNum == 33 || checkerNum == 49) {
-//     available = [
-//       document.querySelector(".square" + (checkerNum - 7)),
-//       document.querySelector(".square" + (checkerNum + 9)),
-//     ];
-//   } else {
-//     available = [
-//       document.querySelector(".square" + (checkerNum - 9)),
-//       document.querySelector(".square" + (checkerNum - 7)),
-//       document.querySelector(".square" + (checkerNum + 7)),
-//       document.querySelector(".square" + (checkerNum + 9)),
-//     ];
-//   }
-// }
-//pakeist, kad veiktu su grid system
 function oneMouseDown(elementUnderMouse, e) {
   thisPlayer = "one";
   checkerNum = Number(currentChecker.dataset.checker);
-//   availableNumbers(checkerNum);
-//   for (let x in available) {
-//     available[x].classList.add("orange");
-//   }
   elementUnderMouse.classList.remove("active");
   elementUnderMouse.classList.remove("one");
   elementUnderMouse.classList.remove("queen");
@@ -145,10 +98,6 @@ function oneMouseDown(elementUnderMouse, e) {
 function twoMouseDown(elementUnderMouse, e) {
   thisPlayer = "two";
   checkerNum = Number(currentChecker.dataset.checker);
-//   availableNumbers(checkerNum);
-//   for (let x in available) {
-//     available[x].classList.add("orange");
-//   }
   elementUnderMouse.classList.remove("active");
   elementUnderMouse.classList.remove("two");
   elementUnderMouse.classList.remove("queen");
@@ -178,16 +127,11 @@ function startGame() {
     const elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
     currentChecker = elementUnderMouse;
     if (elementUnderMouse.className.includes("active")) {
-    //   available.length = 0;
     if(elementUnderMouse.className.includes("queen")) isQueen = true;
     else isQueen = false
-    console.log(localPlayer, turnHere, elementUnderMouse.className.includes("one"), elementUnderMouse.className.includes("two"))
       if (localPlayer == 1 && turnHere == 1 && elementUnderMouse.className.includes("one")) {
-        console.log("this");
-
         oneMouseDown(elementUnderMouse, e);
       } else if (localPlayer == 2 && turnHere == 2 && elementUnderMouse.className.includes("two")) {
-        console.log("this");
         twoMouseDown(elementUnderMouse, e);
       }
     }
@@ -211,11 +155,9 @@ function startGame() {
     else{
         return;
     }
-    // if(document.elementFromPoint(e.clientX, e.clientY).classList.value.includes("square"))
     let elementUnderMouse = "";
     elementUnderMouse = document.elementFromPoint(e.clientX, e.clientY);
     let includes;
-    console.log(elementUnderMouse);
     if (elementUnderMouse !== null) {
       includes = elementUnderMouse.classList.value;
     }
@@ -224,7 +166,6 @@ function startGame() {
         document.querySelector(`.${currentChecker.classList[1]}`).classList.add(`${thisPlayer}`);
     }
     else if(includes.includes(valid)){
-        // turn += 2;
         move(checkerNum - 1, elementUnderMouse.children[0].dataset.checker - 1);
 
     }
@@ -234,4 +175,3 @@ function startGame() {
     }
   });
 }
-//prideti queens
